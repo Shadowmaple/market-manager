@@ -5,6 +5,7 @@
 package com.market.view;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
@@ -19,111 +20,120 @@ public class Login extends JFrame {
 	public Login() {
 		initComponents();
 	}
+	
+    /** 
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Login frame = new Login();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }  
+
+	private void LoginAction(ActionEvent e) {
+		String username = usernameTextField.getText().toString();
+		String password = String.valueOf(passwordField.getPassword());
+		System.out.println(username + " " + password);
+		if ("".equals(username) || "".equals(password)) {
+			System.out.println("error");
+			JOptionPane.showMessageDialog(usernameTextField, "用户名和密码不能为空");
+			return ;
+		}
+		System.out.println("OK");
+	}
+
+	private void ExitAction(ActionEvent e) {
+		System.exit(0);
+	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Mannix Zhang
-		panel9 = new JPanel();
-		panel10 = new JPanel();
-		panel11 = new JPanel();
-		panel12 = new JPanel();
-		center = new JPanel();
 		label1 = new JLabel();
-		panel14 = new JPanel();
 		label2 = new JLabel();
-		label3 = new JLabel();
-		panel15 = new JPanel();
-		textField1 = new JTextField();
-		passwordField1 = new JPasswordField();
+		usernameTextField = new JTextField();
+		passwordField = new JPasswordField();
 		button1 = new JButton();
-		panel16 = new JPanel();
+		button2 = new JButton();
+		label3 = new JLabel();
 
 		//======== this ========
-		setMinimumSize(new Dimension(800, 600));
+		setMinimumSize(new Dimension(500, 400));
+		setTitle("\u767b\u5f55");
 		var contentPane = getContentPane();
-		contentPane.setLayout(new BorderLayout());
 
-		//======== panel9 ========
-		{
-			panel9.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-			.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder
-			.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.
-			awt.Font.BOLD,12),java.awt.Color.red),panel9. getBorder()))
-			;panel9. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-			){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException();}})
-			;
-			panel9.setLayout(new BorderLayout());
-		}
-		contentPane.add(panel9, BorderLayout.NORTH);
+		//---- label1 ----
+		label1.setText("\u7528\u6237\u540d");
+		label1.setHorizontalAlignment(SwingConstants.CENTER);
 
-		//======== panel10 ========
-		{
-			panel10.setMinimumSize(new Dimension(20, 20));
-			panel10.setLayout(new BorderLayout());
-		}
-		contentPane.add(panel10, BorderLayout.SOUTH);
+		//---- label2 ----
+		label2.setText("\u5bc6\u7801");
+		label2.setHorizontalAlignment(SwingConstants.CENTER);
 
-		//======== panel11 ========
-		{
-			panel11.setLayout(new BorderLayout());
-		}
-		contentPane.add(panel11, BorderLayout.EAST);
+		//---- button1 ----
+		button1.setText("\u767b\u5f55");
+		button1.addActionListener(e -> LoginAction(e));
 
-		//======== panel12 ========
-		{
-			panel12.setLayout(new BorderLayout());
-		}
-		contentPane.add(panel12, BorderLayout.WEST);
+		//---- button2 ----
+		button2.setText("\u9000\u51fa");
+		button2.addActionListener(e -> ExitAction(e));
 
-		//======== center ========
-		{
-			center.setLayout(new BorderLayout(50, 100));
+		//---- label3 ----
+		label3.setText("\u767b\u5f55\u754c\u9762");
+		label3.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
+		label3.setHorizontalAlignment(SwingConstants.CENTER);
 
-			//---- label1 ----
-			label1.setText("\u767b\u5f55");
-			label1.setHorizontalAlignment(SwingConstants.CENTER);
-			label1.setMinimumSize(new Dimension(110, 100));
-			center.add(label1, BorderLayout.NORTH);
-
-			//======== panel14 ========
-			{
-				panel14.setLayout(new GridLayout(2, 1, 0, 100));
-
-				//---- label2 ----
-				label2.setText("\u7528\u6237\u540d");
-				label2.setHorizontalAlignment(SwingConstants.LEFT);
-				panel14.add(label2);
-
-				//---- label3 ----
-				label3.setText("\u5bc6\u7801");
-				label3.setHorizontalAlignment(SwingConstants.CENTER);
-				panel14.add(label3);
-			}
-			center.add(panel14, BorderLayout.WEST);
-
-			//======== panel15 ========
-			{
-				panel15.setMaximumSize(new Dimension(1212, 1212));
-				panel15.setLayout(new GridLayout(2, 1, 0, 100));
-
-				//---- textField1 ----
-				textField1.setMaximumSize(new Dimension(80, 50));
-				panel15.add(textField1);
-				panel15.add(passwordField1);
-			}
-			center.add(panel15, BorderLayout.CENTER);
-
-			//---- button1 ----
-			button1.setText("\u767b\u5f55");
-			center.add(button1, BorderLayout.SOUTH);
-
-			//======== panel16 ========
-			{
-				panel16.setLayout(new BorderLayout());
-			}
-			center.add(panel16, BorderLayout.EAST);
-		}
-		contentPane.add(center, BorderLayout.CENTER);
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGap(187, 187, 187)
+							.addComponent(button1, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+							.addGap(73, 73, 73)
+							.addComponent(button2, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGap(212, 212, 212)
+							.addComponent(label3, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGap(130, 130, 130)
+							.addGroup(contentPaneLayout.createParallelGroup()
+								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label2, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE))
+							.addGap(47, 47, 47)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(usernameTextField)
+								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(146, Short.MAX_VALUE))
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addGap(40, 40, 40)
+					.addComponent(label3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(57, 57, 57)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(label1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addComponent(usernameTextField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+					.addGap(62, 62, 62)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addComponent(label2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passwordField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+					.addGap(80, 80, 80)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(button1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(111, Short.MAX_VALUE))
+		);
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -131,19 +141,12 @@ public class Login extends JFrame {
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	// Generated using JFormDesigner Evaluation license - Mannix Zhang
-	private JPanel panel9;
-	private JPanel panel10;
-	private JPanel panel11;
-	private JPanel panel12;
-	private JPanel center;
 	private JLabel label1;
-	private JPanel panel14;
 	private JLabel label2;
-	private JLabel label3;
-	private JPanel panel15;
-	private JTextField textField1;
-	private JPasswordField passwordField1;
+	private JTextField usernameTextField;
+	private JPasswordField passwordField;
 	private JButton button1;
-	private JPanel panel16;
+	private JButton button2;
+	private JLabel label3;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

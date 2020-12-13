@@ -3,95 +3,47 @@ JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:187:p, comp button1:::p:154:p, space :p:73:p, comp button2:::p:154:p}, seq {space :p:212:p, comp label3:::p:266:p}, seq l {space :p:130:p, par l {comp label1::l:p:93:p, comp label2::l:p:93:p}, space :p:47:p, par l:::p {comp usernameTextField:::::x, comp passwordField:::p:307:p}}}, space ::146:x}}"
+			"$verticalGroup": "par l {seq l {space :p:40:p, comp label3:::p:35:p, space :p:57:p, par b {comp label1::b:p:39:p, comp usernameTextField::b:p:39:p}, space :p:62:p, par l {comp label2:::p:39:p, comp passwordField::t:p:39:p}, space :p:80:p, par b {comp button1::b:p:48:p, comp button2::b:p:48:p}, space ::111:x}}"
+		} ) {
 			name: "this"
-			"minimumSize": new java.awt.Dimension( 800, 600 )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-				name: "panel9"
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "North"
+			"minimumSize": new java.awt.Dimension( 500, 400 )
+			"title": "登录"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "用户名"
+				"horizontalAlignment": 0
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-				name: "panel10"
-				"minimumSize": new java.awt.Dimension( 20, 20 )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "South"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "密码"
+				"horizontalAlignment": 0
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-				name: "panel11"
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "East"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "usernameTextField"
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-				name: "panel12"
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "West"
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "passwordField"
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) {
-				"vgap": 100
-				"hgap": 50
-			} ) {
-				name: "center"
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"text": "登录"
-					"horizontalAlignment": 0
-					"minimumSize": new java.awt.Dimension( 110, 100 )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "North"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
-					"columns": 1
-					"rows": 2
-					"vgap": 100
-				} ) {
-					name: "panel14"
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label2"
-						"text": "用户名"
-						"horizontalAlignment": 2
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label3"
-						"text": "密码"
-						"horizontalAlignment": 0
-					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "West"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
-					"columns": 1
-					"rows": 2
-					"vgap": 100
-				} ) {
-					name: "panel15"
-					"maximumSize": new java.awt.Dimension( 1212, 1212 )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
-						"maximumSize": new java.awt.Dimension( 80, 50 )
-					} )
-					add( new FormComponent( "javax.swing.JPasswordField" ) {
-						name: "passwordField1"
-					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "Center"
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "button1"
-					"text": "登录"
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "South"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-					name: "panel16"
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "East"
-				} )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "Center"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "登录"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "LoginAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "退出"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "ExitAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "登录界面"
+				"font": new java.awt.Font( "Dialog", 1, 18 )
+				"horizontalAlignment": 0
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 60, 35 )
+			"location": new java.awt.Point( 40, 25 )
 			"size": new java.awt.Dimension( 725, 540 )
 		} )
 	}

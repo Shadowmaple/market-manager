@@ -1,0 +1,37 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:269:p, par t {comp button4::t:p:142:p, comp button2::t:p:142:p, comp button1::t:p:142:p, comp button3::t:p:142:p}, space ::362:x}, seq t {space ::604:x, comp button5:::p:94:p, space :p:75:p}}"
+			"$verticalGroup": "par l {seq l {space :p:71:p, comp button1:::p:59:p, space :p:57:p, comp button3:::p:59:p, space :p:48:p, comp button2:::p:59:p, space :p:54:p, comp button4:::p:59:p, space s:::p, comp button5:::p:43:p, space ::49:x}}"
+		} ) {
+			name: "this"
+			"title": "超市零售管理系统"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "员工管理"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "进货管理"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "收银"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "记录查看"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "退出"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 775, 605 )
+		} )
+	}
+}
