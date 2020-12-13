@@ -1,0 +1,93 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:61:p, comp scrollPane1:::p:399:p, par l {seq {space :p:73:p, par t {seq t {par t {comp textField1:::p:68:p, comp textField3:::p:68:p}, space :p:37:p, par t {comp productNameTextField:::p:150:p, comp productNumberTextField:::p:150:p}}, seq t {comp textField5:::p:68:p, space :37:37:p, comp totalFeeTextField:::p:150:p}}, space ::75:x}, seq t {space ::75:x, par l:::p {comp button2::::94:x, comp button1::::94:x}, space :p:85:p, comp button3:::p:90:p, space :p:59:p}}}, seq t {space ::612:x, comp label1:::p:97:p, space :p:154:p}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, comp label1:::p:30:p, space :p:78:p, par b {comp productNameTextField::b:p:31:p, comp textField1::b:p:31:p}, space :p:30:p, par b {comp textField3::b:p:31:p, comp productNumberTextField::b:p:31:p}, space :p:24:p, par l {comp textField5:::p:31:p, comp totalFeeTextField:::p:31:p}, space :p:32:p, comp button1:::p:44:p, space :p:39:p, par b {comp button3::b:p:45:p, comp button2::b:p:45:p}, space ::66:x}, seq t {space ::94:x, comp scrollPane1:::p:336:p, space :p:81:p}}"
+		} ) {
+			name: "this"
+			"title": "商品购买"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( "" )
+							add( null )
+							add( "" )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "编号" )
+						add( "商品名称" )
+						add( "价格" )
+						add( "库存量" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+				"text": "商品名"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "productNameTextField"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+				"text": "数量"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "计算金额"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "countTotalFeeAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "购买"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sellAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "返回"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exitAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "productNumberTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "购买商品"
+				"horizontalTextPosition": 10
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField5"
+				"text": "总价"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "totalFeeTextField"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 865, 540 )
+		} )
+	}
+}

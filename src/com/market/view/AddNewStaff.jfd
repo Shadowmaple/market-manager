@@ -1,0 +1,53 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:90:p, comp button1:::p:84:p, space :p:34:p, comp button2:::p:84:p}, seq l {space :p:53:p, par l {par l:::p {comp staffPasswordlabel::::51:x, comp label1::::51:x}, comp label3:::p:51:p}, space :p:67:p, par l:::p {seq {comp staffTypeCmdBox::::121:x, space :p:19:p}, comp staffNameTextField::l::140:x, comp staffPasswordField::l::140:x}}}, space ::142:x}}"
+			"$verticalGroup": "par l {seq l {space :p:53:p, par l {comp label1:::p:35:p, comp staffNameTextField:::p:35:p}, space s:::p, par b {comp staffPasswordlabel::b:p:33:p, comp staffPasswordField::b:p:33:p}, space :p:21:p, par t {comp staffTypeCmdBox:::p::p, comp label3:::p:33:p}, space ::55:x, par b {comp button1::b:p:36:p, comp button2::b:p:36:p}, space :p:32:p}}"
+		} ) {
+			name: "this"
+			"title": "添加新员工"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "员工姓名"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "staffNameTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "staffPasswordlabel"
+				"text": "密码"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "添加"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "AddStaffAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "取消"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "quitAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "staffTypeCmdBox"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "售货员"
+					addElement( "售货员" )
+					addElement( "进货员" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "员工类型"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "staffPasswordField"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 50, 15 )
+			"size": new java.awt.Dimension( 455, 345 )
+		} )
+	}
+}

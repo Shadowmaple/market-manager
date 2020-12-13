@@ -7,6 +7,10 @@ package com.market.view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import com.market.dao.StaffDao;
+import com.market.model.Staff;
+
 import net.miginfocom.swing.*;
 
 /**
@@ -35,7 +39,7 @@ public class Login extends JFrame {
                 }
             }
         });
-    }  
+    }
 
 	private void LoginAction(ActionEvent e) {
 		String username = usernameTextField.getText().toString();
@@ -47,6 +51,22 @@ public class Login extends JFrame {
 			return ;
 		}
 		System.out.println("OK");
+		Staff staff = new Staff();
+//		this.dispose();
+//		new Home(staff).setVisible(true);
+//		return ;
+		StaffDao staffDao = new StaffDao();
+		staff.setName(username);
+		staff.setPassword(password);
+		staff = staffDao.login(staff);
+		staffDao.closeDao();
+		if (staff == null) {
+			JOptionPane.showMessageDialog(this, "用户名或密码错误");
+            return;
+		}
+		JOptionPane.showMessageDialog(this, "用户" + staff.getName() + "登录成功");		
+		this.dispose();
+		new Home(staff).setVisible(true);
 	}
 
 	private void ExitAction(ActionEvent e) {

@@ -27,11 +27,13 @@ public class Staff {
 	public int getType() {
 		return type;
 	}
+	public void setType(int type) {
+		this.type = type;	
+	}
 	public String getEntryTime() {
 		return entryTime;
 	}
 	public void setEntryTime(String time) {
-		this.entryTime = time;
-		
+		this.entryTime = time;		
 	}
 }

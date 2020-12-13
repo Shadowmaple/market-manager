@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:269:p, par t {comp button4::t:p:142:p, comp button2::t:p:142:p, comp button1::t:p:142:p, comp button3::t:p:142:p}, space ::362:x}, seq t {space ::604:x, comp button5:::p:94:p, space :p:75:p}}"
-			"$verticalGroup": "par l {seq l {space :p:71:p, comp button1:::p:59:p, space :p:57:p, comp button3:::p:59:p, space :p:48:p, comp button2:::p:59:p, space :p:54:p, comp button4:::p:59:p, space s:::p, comp button5:::p:43:p, space ::49:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:269:p, par t {comp button4::t:p:142:p, comp button2::t:p:142:p, comp button1::t:p:142:p, comp button3::t:p:142:p}, space u:::p, comp desktopPane:::p:212:p, space ::188:x}, seq t {space ::654:x, comp button5:::p:94:p, space :p:75:p}}"
+			"$verticalGroup": "par l {seq l {space :p:71:p, comp button1:::p:59:p, space :p:57:p, par l {seq {comp button3:::p:59:p, space :p:89:p, comp button2:::p:59:p}, comp desktopPane:::p:101:p}, space :p:54:p, comp button4:::p:59:p, space s:::p, comp button5:::p:43:p, space ::22:x}}"
 		} ) {
 			name: "this"
 			"title": "超市零售管理系统"
@@ -29,9 +29,58 @@ new FormModel {
 				name: "button5"
 				"text": "退出"
 			} )
+			add( new FormContainer( "javax.swing.JDesktopPane", new FormLayoutManager( class javax.swing.JDesktopPane ) ) {
+				name: "desktopPane"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "staffMenu"
+					"text": "员工管理"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "添加新员工"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addNewStaffAction", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "员工列表"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "listStaffsAction", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "saleMenu"
+					"text": "零售管理"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "零售结算"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "saleProductsAction", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": "零售记录"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "purchaseMenu"
+					"text": "进货管理"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "进货计划"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem5"
+						"text": "新增进货"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem7"
+						"text": "进货记录"
+					} )
+				} )
+			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 775, 605 )
+			"location": new java.awt.Point( 50, 0 )
+			"size": new java.awt.Dimension( 825, 640 )
 		} )
 	}
 }
