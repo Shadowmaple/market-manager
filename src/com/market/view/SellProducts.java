@@ -22,7 +22,7 @@ import com.market.util.Time;
  */
 public class SellProducts extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private int userId;
@@ -80,7 +80,7 @@ public class SellProducts extends JFrame {
 				return ;
 			}
 		}
-		
+
 		needPayTextField.setText(String.valueOf(totalFee));
 	}
 
@@ -92,7 +92,7 @@ public class SellProducts extends JFrame {
 			JOptionPane.showMessageDialog(this, "输入错误");
 			return ;
 		}
-		
+
 		Product product = new Product();
 		product.setName(name);
 		ProductDao productDao = new ProductDao();

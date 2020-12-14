@@ -18,7 +18,7 @@ import com.market.model.Plan;
  */
 public class PurchasePlanForm extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public PurchasePlanForm() {
@@ -61,10 +61,10 @@ public class PurchasePlanForm extends JFrame {
             JOptionPane.showMessageDialog(this, "未选中数据");
             return;
         }
-        
+
         DefaultTableModel dft = (DefaultTableModel) planTable.getModel();
         int id = Integer.parseInt(dft.getValueAt(index, 0).toString());
-        
+
         var planDao = new PlanDao();
         var ok = planDao.delete(id);
         planDao.closeDao();
@@ -72,7 +72,7 @@ public class PurchasePlanForm extends JFrame {
         	JOptionPane.showMessageDialog(this, "失败");
 			return ;
         }
-        
+
         planTable.remove(index);
         JOptionPane.showMessageDialog(this, "删除成功");
 	}
@@ -85,12 +85,12 @@ public class PurchasePlanForm extends JFrame {
 			JOptionPane.showMessageDialog(this, "商品名、单价和数量不能为空！");
 			return ;
 		}
-		
+
 		var plan = new Plan();
 		plan.setName(name);
 		plan.setPrice(price);
 		plan.setNum(num);
-		
+
 		var planDao = new PlanDao();
 		boolean ok = planDao.create(plan);
 		planDao.closeDao();
@@ -98,7 +98,7 @@ public class PurchasePlanForm extends JFrame {
 			JOptionPane.showMessageDialog(this, "失败");
 			return ;
 		}
-		
+
 		JOptionPane.showMessageDialog(this, "添加成功");
 	}
 
@@ -117,16 +117,16 @@ public class PurchasePlanForm extends JFrame {
             JOptionPane.showMessageDialog(this, "未选中数据");
             return;
         }
-        
+
         DefaultTableModel dft = (DefaultTableModel) planTable.getModel();
         int id = Integer.parseInt(dft.getValueAt(index, 0).toString());
-        
+
         var plan = new Plan();
         plan.setId(id);
         plan.setName(name);
         plan.setPrice(price);
         plan.setNum(num);
-        
+
         var planDao = new PlanDao();
         var ok = planDao.update(plan);
         planDao.closeDao();

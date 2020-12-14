@@ -14,15 +14,15 @@ public class Plan {
 	public int getProductId() {
 		return productId;
 	}
-	
+
 	public String getProductName() {
 		return productName;
 	}
-	
+
 	public int getNum() {
 		return num;
 	}
-	
+
 	public float getPrice() {
 		return price;
 	}
@@ -30,11 +30,11 @@ public class Plan {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setProductId(int id) {
 		this.productId = id;
 	}
-	
+
 	public void setProductName(String name) {
 		this.productName = name;
 	}

@@ -13,27 +13,27 @@ public class PurchaseRecord {
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getStaffId() {
 		return staffId;
 	}
-	
+
 	public int getProductId() {
 		return productId;
 	}
-	
+
 	public int getNum() {
 		return number;
 	}
-	
+
 	public float getPrice() {
 		return price;
 	}
-	
+
 	public float getMoney() {
 		return money;
 	}
-	
+
 	public String getCreateTime() {
 		return createTime;
 	}
@@ -41,15 +41,15 @@ public class PurchaseRecord {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setStaffId(int id) {
 		this.staffId = id;
 	}
-	
+
 	public void setProduceId(int id) {
 		this.productId = id;
 	}
-	
+
 	public void setNum(int num) {
 		this.number = num;
 	}

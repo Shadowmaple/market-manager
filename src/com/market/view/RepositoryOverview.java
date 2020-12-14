@@ -20,7 +20,7 @@ public class RepositoryOverview extends JFrame {
 
 		monitorRepoCondition();
 	}
-	
+
 	// 监测库存预警
 	private void monitorRepoCondition() {
 		var productDao = new ProductDao();
@@ -42,7 +42,7 @@ public class RepositoryOverview extends JFrame {
 				shortage.add(p.getName());
 			}
 		}
-		
+
 		String warning = "";
 		if (lack.size() > 0) {
 			warning += "以下货物短缺：\n";
@@ -51,7 +51,7 @@ public class RepositoryOverview extends JFrame {
 			}
 			warning += "\n";
 		}
-		
+
 		if (shortage.size() > 0) {
 			warning += "以下货物过少：\n";
 			for (var s : shortage) {
@@ -59,7 +59,7 @@ public class RepositoryOverview extends JFrame {
 			}
 			warning += "\n";
 		}
-		
+
 		if (redundant.size() > 0) {
 			warning += "以下货物过剩：\n";
 			for (var s : redundant) {
@@ -67,7 +67,7 @@ public class RepositoryOverview extends JFrame {
 			}
 			warning += "\n";
 		}
-		
+
 		if (warning.length() > 0) {
 			JOptionPane.showMessageDialog(this, warning);
 		}
@@ -84,7 +84,7 @@ public class RepositoryOverview extends JFrame {
 			JOptionPane.showMessageDialog(this, "失败");
 			return ;
 		}
-		
+
 		// 填入 table
 		DefaultTableModel dft = (DefaultTableModel) repoTable.getModel();
 		dft.setRowCount(0);
@@ -92,7 +92,7 @@ public class RepositoryOverview extends JFrame {
 			Vector<Object> v = new Vector<Object>();
 			v.add(p.getId());
 			v.add(p.getName());
-			v.add(p.getNum());			
+			v.add(p.getNum());
 			v.add(p.judgeRepoCondition());
 			dft.addRow(v);
 		}

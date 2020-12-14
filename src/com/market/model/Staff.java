@@ -30,15 +30,15 @@ public class Staff {
 		return type;
 	}
 	public void setType(int type) {
-		this.type = type;	
+		this.type = type;
 	}
 	public String getEntryTime() {
 		return entryTime;
 	}
 	public void setEntryTime(String time) {
-		this.entryTime = time;		
+		this.entryTime = time;
 	}
-	
+
 	public static String getNameById(int id) {
 		StaffDao d = new StaffDao();
 		var staff = d.getStaffById(id);

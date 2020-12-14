@@ -31,7 +31,7 @@ public class SaleCondition extends JFrame {
 			return ;
 		}
 
-		String beginTime, endTime;		
+		String beginTime, endTime;
 		// 日报表
 		if (type == 0) {
 			beginTime = String.format("%d-%02d-%02d 00:00:00", year, month, day);

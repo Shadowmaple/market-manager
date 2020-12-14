@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Sun Dec 13 14:56:49 CST 2020
- */
-
 package com.market.view;
 
 import java.awt.event.*;

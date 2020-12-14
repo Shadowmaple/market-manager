@@ -18,9 +18,9 @@ public class Home extends JFrame {
 
 	public Home(Staff staff) {
 		initComponents();
-		
+
 		// 权限
-		int role = staff.getType(); 
+		int role = staff.getType();
 		if (role == 0) {
 			staffMenu.setEnabled(false);
 			purchaseMenu.setEnabled(false);

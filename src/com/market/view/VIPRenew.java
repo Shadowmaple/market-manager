@@ -15,7 +15,7 @@ import com.market.util.Time;
  */
 public class VIPRenew extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public VIPRenew() {
@@ -24,7 +24,7 @@ public class VIPRenew extends JFrame {
 
 	// 续费
 	private void renewAction(ActionEvent e) {
-		var idStr = numberTextField.getText().toString();		
+		var idStr = numberTextField.getText().toString();
 		int month = Integer.valueOf(renewMonthTextField.getText().toString());
 		if (idStr.equals("") || month <= 0) {
 			JOptionPane.showMessageDialog(this, "无效");

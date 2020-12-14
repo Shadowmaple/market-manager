@@ -18,12 +18,12 @@ public class returnGoodsForm extends JFrame {
 	public returnGoodsForm() {
 		initComponents();
 	}
-	
+
 	// 确认退货
 	private void returnGoodsAction(ActionEvent e) {
 		// TODO add your code here
 		var recordNum = Integer.valueOf(treatRecordNumTextField.getText().toString());
-		var record = SaleRecord.getRecordById(recordNum); 
+		var record = SaleRecord.getRecordById(recordNum);
 		if (record == null) {
 			JOptionPane.showMessageDialog(this, "记录不存在");
 			return ;

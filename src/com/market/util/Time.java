@@ -20,7 +20,7 @@ public class Time {
 			date = new Date();
 		}
 
-		Calendar calendar = new GregorianCalendar(); 
+		Calendar calendar = new GregorianCalendar();
 	    calendar.setTime(date);
 	    calendar.add(Calendar.MONTH, month);
 	    date = calendar.getTime();
@@ -32,7 +32,7 @@ public class Time {
 	public static boolean checkInputDate(int year, int month, int day) {
 		if (year <= 0 || month <= 0 || month > 12 || day > 31 || day <= 0) return false;
 		if (day <= 28) return true;
-		
+
 		int[] regularDay = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 		if (month != 2) {
@@ -48,7 +48,7 @@ public class Time {
 
 		return day == 28;
 	}
-	
+
 	public static int getTheEndDay(int year, int month) {
 		if (year <= 0 || month <= 0 || month > 12) return 0;
 

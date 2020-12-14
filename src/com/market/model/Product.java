@@ -9,7 +9,7 @@ public class Product {
 	private float pur_price; // 批发价
 	private float price; // 零售价
 	private int stratey; // 营销策略，打几折，默认为100
-	
+
 	public int getId() {
 		return id;
 	}
@@ -17,19 +17,19 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getNum() {
 		return num;
 	}
-	
+
 	public float getPurchasePrice() {
 		return pur_price;
 	}
-	
+
 	public float getPrice() {
 		return price;
 	}
-	
+
 	public int getStratey() {
 		return stratey;
 	}
@@ -37,7 +37,7 @@ public class Product {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -45,7 +45,7 @@ public class Product {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	
+
 	public void setPurchasePrice(float price) {
 		this.pur_price = price;
 	}
@@ -53,7 +53,7 @@ public class Product {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	
+
 	public void setStratey(int stratey) {
 		this.stratey = stratey;
 	}

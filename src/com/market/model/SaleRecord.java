@@ -12,15 +12,15 @@ public class SaleRecord {
 	private float money; // 销售总金额
 	private int stratey; // 销售策略
 	private String createTime; // 销售时间
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getStaffId() {
 		return staffId;
 	}
-	
+
 	public int getProductId() {
 		return productId;
 	}
@@ -38,19 +38,19 @@ public class SaleRecord {
 		product = productDao.getProductById(id);
 		return product.getName();
 	}
-	
+
 	public int getNumber() {
 		return number;
 	}
-	
+
 	public float getMoney() {
 		return money;
 	}
-	
+
 	public int getStratey() {
 		return stratey;
 	}
-	
+
 	public String getCreateTime() {
 		return createTime;
 	}
@@ -58,11 +58,11 @@ public class SaleRecord {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setStaffId(int staffId) {
 		this.staffId = staffId;
 	}
-	
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
@@ -70,11 +70,11 @@ public class SaleRecord {
 	public void setNumber(int num) {
 		this.number = num;
 	}
-	
+
 	public void setMoney(float money) {
 		this.money = money;
 	}
-	
+
 	public void setStratey(int stratey) {
 		this.stratey = stratey;
 	}
@@ -82,7 +82,7 @@ public class SaleRecord {
 	public void setCreateTime(String time) {
 		this.createTime = time;
 	}
-	
+
 	// 根据 id 查询记录
 	public static SaleRecord getRecordById(int id) {
 		var dao = new SaleRecordDao();

@@ -18,14 +18,14 @@ import net.miginfocom.swing.*;
  */
 public class Login extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public Login() {
 		initComponents();
 	}
-	
-    /** 
+
+    /**
      * Launch the application.
      */
     public static void main(String[] args) {
@@ -64,7 +64,7 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(this, "用户名或密码错误");
             return;
 		}
-		JOptionPane.showMessageDialog(this, "用户" + staff.getName() + "登录成功");		
+		JOptionPane.showMessageDialog(this, "用户" + staff.getName() + "登录成功");
 		this.dispose();
 		new Home(staff).setVisible(true);
 	}

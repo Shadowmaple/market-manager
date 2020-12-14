@@ -16,7 +16,7 @@ import com.market.util.Time;
  */
 public class GrantVIPCard extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public GrantVIPCard() {
@@ -32,7 +32,7 @@ public class GrantVIPCard extends JFrame {
 			JOptionPane.showMessageDialog(this, "失败");
 			return ;
 		}
-		
+
 		var vip = new VIP();
 		vip.setName(name);
 		vip.setCreateTime(Time.getCurrentTime());
@@ -44,7 +44,7 @@ public class GrantVIPCard extends JFrame {
 			JOptionPane.showMessageDialog(this, "失败");
 			return ;
 		}
-		
+
 		JOptionPane.showMessageDialog(this, "新发放的会员卡号是" + vip.getId());
 	}
 
