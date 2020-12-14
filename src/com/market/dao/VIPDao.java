@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.market.model.Plan;
+import com.market.model.Product;
 import com.market.model.VIP;
 
 public class VIPDao extends BaseDao {
@@ -27,13 +30,38 @@ public class VIPDao extends BaseDao {
         }
         return false;
 	}
-	
-	public boolean updateValidityTime(VIP vip) {
-		String sqlString = "update vip set validitytime = ? where id = ?";
-		
+
+	public VIP getVIPById(int id) {
+		VIP vip = null;
+		String sqlString = "select * from vip where VIP_id = ?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
-            ps.setString(1, vip.getValidityTime()));
+            ps.setInt(1, id);
+            ResultSet executeQuery = ps.executeQuery();
+
+            if(executeQuery.next()){
+            	vip = new VIP();
+                vip.setId(executeQuery.getInt("VIP_id"));
+                vip.setName(executeQuery.getString("VIP_name"));
+                vip.setMoney(executeQuery.getFloat("VIP_money"));
+                vip.setCreateTime(executeQuery.getString("createtime"));
+                vip.setValidityTime(executeQuery.getString("validitytime"));
+                vip.setIsUse(executeQuery.getInt("is_use"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return vip;
+	}
+
+	public boolean updateValidityTime(VIP vip) {
+		String sqlString = "update vip set validitytime = ? where VIP_id = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlString);
+            ps.setString(1, vip.getValidityTime());
             ps.setInt(2,  vip.getId());
             if(ps.executeUpdate() > 0) return true;
         } catch (SQLException e) {
@@ -49,7 +77,7 @@ public class VIPDao extends BaseDao {
 			return false;
 		}
 
-		String sqlString = "update vip set is_use = 0 where id = ?";
+		String sqlString = "update vip set is_use = 0 where VIP_id = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);

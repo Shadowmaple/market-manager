@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Mon Dec 14 16:00:35 CST 2020
- */
-
 package com.market.view;
 
 import java.awt.event.*;
@@ -11,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import com.market.dao.SaleRecordDao;
+import com.market.util.Time;
 
 /**
  * @author Mannix Zhang
@@ -22,22 +19,14 @@ public class SaleCondition extends JFrame {
 		initComponents();
 	}
 
-	// 校验填入的日期是否合法
-	// TO DO
-	private boolean checkInputDate(int year, int month, int day) {
-
-		return true;
-	}
-
 	// 查询销售排行榜/报表
 	private void searchSaleConditionAction(ActionEvent e) {
-		// TODO add your code here
 		int type = typeComBox.getSelectedIndex();
 		int year = Integer.valueOf(yearTextField.getText().toString());
 		int month = monthComBox.getSelectedIndex() + 1;
 		int day = dayComBox.getSelectedIndex() + 1;
-		
-		if (!checkInputDate(year, month, day)) {
+
+		if (!Time.checkInputDate(year, month, day)) {
 			JOptionPane.showMessageDialog(this, "填入的时间无效");
 			return ;
 		}
@@ -45,16 +34,15 @@ public class SaleCondition extends JFrame {
 		String beginTime, endTime;		
 		// 日报表
 		if (type == 0) {
-			beginTime = String.format("%d-%02d-%02d", year, month, day);
-			endTime = String.format("%d-%02d-%02d", year, month, day+1);
+			beginTime = String.format("%d-%02d-%02d 00:00:00", year, month, day);
+			endTime = String.format("%d-%02d-%02d 23:59:59", year, month, day);
 		} else if (type == 1) {
-			// TO DO:获取当月的最后一个天
-			int endDay = 31;
-			beginTime = String.format("%d-%02d-01", year, month, day);
-			endTime = String.format("%d-%02d-%02d", year, month, endDay);
+			int endDay = Time.getTheEndDay(year, month);
+			beginTime = String.format("%d-%02d-01 00:00:00", year, month);
+			endTime = String.format("%d-%02d-%02d 23:59:59", year, month, endDay);
 		} else {
-			beginTime = String.format("%d-01-01", year);
-			endTime = String.format("%d-12-31", year);
+			beginTime = String.format("%d-01-01 00:00:00", year);
+			endTime = String.format("%d-12-31 23:59:59", year);
 		}
 
 		var saleDao = new SaleRecordDao();

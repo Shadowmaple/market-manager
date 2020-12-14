@@ -35,15 +35,15 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "staffMenu"
-					"text": "员工管理"
+					"text": "人员管理"
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem1"
-						"text": "添加新员工"
+						"text": "添加新人员"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addNewStaffAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
-						"text": "员工列表"
+						"text": "人员列表"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "listStaffsAction", true ) )
 					} )
 				} )

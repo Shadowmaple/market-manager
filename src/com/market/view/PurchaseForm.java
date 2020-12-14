@@ -41,7 +41,7 @@ public class PurchaseForm extends JFrame {
 			JOptionPane.showMessageDialog(this, "导入失败");
 			return ;
 		}
-		
+
 		// 填入 table
 		DefaultTableModel dft = (DefaultTableModel) productPlanTable.getModel();
 		dft.setRowCount(0);
@@ -65,18 +65,18 @@ public class PurchaseForm extends JFrame {
 			var productDao = new ProductDao();
 			var product = productDao.getProduct(productName);
 			if (product == null) {
-				JOptionPane.showMessageDialog(this, "商品" + productName + "不存在。该商品进货失败。");				
+				JOptionPane.showMessageDialog(this, "商品" + productName + "不存在。该商品进货失败。");
 			}
-			
+
 			var record = new PurchaseRecord();
 			record.setProduceId(product.getId());
 			record.setStaffId(this.userId);
 			record.setPrice(Float.valueOf(productPlanTable.getValueAt(i, 2).toString()));
 			record.setNum(Integer.valueOf(productPlanTable.getValueAt(i, 3).toString()));
 			record.setMoney(Float.valueOf(productPlanTable.getValueAt(i, 4).toString()));
-			
+
 			// 新建数据DB
-			var recordDao = new PurchaseRecordDao(); 
+			var recordDao = new PurchaseRecordDao();
 			var ok = recordDao.create(record);
 			recordDao.closeDao();
 			if (!ok) {

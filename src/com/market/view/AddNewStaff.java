@@ -8,6 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import com.market.dao.StaffDao;
 import com.market.model.Staff;
+import com.market.util.Time;
 
 /**
  * @author Mannix Zhang
@@ -31,17 +32,17 @@ public class AddNewStaff extends JFrame {
 		String username = staffNameTextField.getText().toString();
 		String password = String.valueOf(staffPasswordField.getPassword());
 		int staffType = staffTypeCmdBox.getSelectedIndex();
-		System.out.println(username + " " + password + " "+ staffType);
 		if ("".equals(username) || "".equals(password)) {
 			System.out.println("error");
 			JOptionPane.showMessageDialog(this, "用户名和密码不能为空");
 			return ;
 		}
-		System.out.println("OK");
+
 		Staff staff = new Staff();
 		staff.setName(username);
 		staff.setPassword(password);
 		staff.setType(staffType);
+		staff.setEntryTime(Time.getCurrentTime());
 		StaffDao staffDao = new StaffDao();
 		boolean ok = staffDao.create(staff);
 		staffDao.closeDao();

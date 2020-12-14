@@ -6,7 +6,8 @@ public class Product {
 	private int id;
 	private String name;
 	private int num; // 库存量
-	private float price;
+	private float pur_price; // 批发价
+	private float price; // 零售价
 	private int stratey; // 营销策略，打几折，默认为100
 	
 	public int getId() {
@@ -19,6 +20,10 @@ public class Product {
 	
 	public int getNum() {
 		return num;
+	}
+	
+	public float getPurchasePrice() {
+		return pur_price;
 	}
 	
 	public float getPrice() {
@@ -39,6 +44,10 @@ public class Product {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+	
+	public void setPurchasePrice(float price) {
+		this.pur_price = price;
 	}
 
 	public void setPrice(float price) {

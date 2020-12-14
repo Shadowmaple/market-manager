@@ -13,8 +13,8 @@ public class PlanDao extends BaseDao {
 	public List<Plan> getPlanList(Plan plan) {
         List<Plan> retList = new ArrayList<Plan>();
         String sqlString = "select * from pur_plan";
-        if (plan != null && !plan.getName().equals("")) {
-        	sqlString += "where name = '" + plan.getName() + "'";
+        if (plan != null && !plan.getProductName().equals("")) {
+        	sqlString += "where name = '" + plan.getProductName() + "'";
         }
 
         try {
@@ -23,7 +23,8 @@ public class PlanDao extends BaseDao {
             while(executeQuery.next()){
                 Plan p = new Plan();
                 p.setId(executeQuery.getInt("id"));
-                p.setName(executeQuery.getString("name"));
+                p.setProductId(executeQuery.getInt("goods_id"));
+                p.setProductName(executeQuery.getString("goods_name"));
                 p.setNum(executeQuery.getInt("number"));
                 p.setPrice(executeQuery.getFloat("price"));
                 retList.add(p);
@@ -36,13 +37,14 @@ public class PlanDao extends BaseDao {
     }
 
 	public boolean create(Plan plan) {
-		String sqlString = "insert into pur_plan(name, number, price) values(?, ?, ?)";
-		
+		String sqlString = "insert into pur_plan(goods_id, goods_name, number, price) values(?, ?, ?, ?)";
+
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
-            ps.setString(1, plan.getName());
-            ps.setInt(2,  plan.getNum());
-            ps.setFloat(3,  plan.getPrice());
+            ps.setInt(1, plan.getProductId());
+            ps.setString(2, plan.getProductName());
+            ps.setInt(3,  plan.getNum());
+            ps.setFloat(4,  plan.getPrice());
             if(ps.executeUpdate() > 0) return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -50,20 +52,21 @@ public class PlanDao extends BaseDao {
         }
         return false;
 	}
-	
+
 	public boolean update(Plan plan) {
 		if (plan.getId() == 0) {
 			return false;
 		}
-		
-		String sqlString = "update pur_plan set name = ?, number = ?, price = ? where id = ?";
-		
+
+		String sqlString = "update pur_plan set goods_id = ?, goods_name = ?, number = ?, price = ? where id = ?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
-            ps.setString(1, plan.getName());
-            ps.setInt(2,  plan.getNum());
-            ps.setFloat(3,  plan.getPrice());
-            ps.setInt(4, plan.getId());
+            ps.setInt(1, plan.getProductId());
+            ps.setString(2, plan.getProductName());
+            ps.setInt(3,  plan.getNum());
+            ps.setFloat(4,  plan.getPrice());
+            ps.setInt(5, plan.getId());
             if(ps.executeUpdate() > 0) return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -78,7 +81,7 @@ public class PlanDao extends BaseDao {
 		}
 
 		String sqlString = "delete from pur_plan where id = ?";
-		
+
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.setInt(1, id);

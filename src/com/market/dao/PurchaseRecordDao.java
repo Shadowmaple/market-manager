@@ -19,13 +19,13 @@ public class PurchaseRecordDao extends BaseDao {
             ResultSet executeQuery = preparedStatement.executeQuery();
             while(executeQuery.next()){
                 PurchaseRecord p = new PurchaseRecord();
-                p.setId(executeQuery.getInt("id"));
+                p.setId(executeQuery.getInt("pur_id"));
                 p.setStaffId(executeQuery.getInt("staff_id"));
                 p.setProduceId(executeQuery.getInt("goods_id"));
                 p.setNum(executeQuery.getInt("number"));
                 p.setPrice(executeQuery.getFloat("price"));
                 p.setMoney(executeQuery.getFloat("money"));
-                p.setCreateTime(executeQuery.getString("create_time"));
+                p.setCreateTime(executeQuery.getString("createtime"));
                 retList.add(p);
             }
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class PurchaseRecordDao extends BaseDao {
 
 	public boolean create(PurchaseRecord record) {
 		if (record == null) return false;
-		
+
 		String sqlString = "insert into sale_record(staff_id, goods_id, number, price, money, createtime) values(?, ?, ?, ?, ?, ?)";
 
         try {

@@ -17,9 +17,10 @@ public class Home extends JFrame {
 	}
 
 	public Home(Staff staff) {
+		initComponents();
+		
 		// 权限
 		int role = staff.getType(); 
-		initComponents();
 		if (role == 0) {
 			staffMenu.setEnabled(false);
 			purchaseMenu.setEnabled(false);
@@ -29,7 +30,7 @@ public class Home extends JFrame {
 		}
 		this.userId = staff.getId();
 	}
-	
+
 	public int getCurrentUserId() {
 		return userId;
 	}
@@ -40,11 +41,6 @@ public class Home extends JFrame {
 		AddNewStaff newStaffForm = new AddNewStaff();
 		newStaffForm.setVisible(true);
 		desktopPane.add(newStaffForm);
-	}
-
-	// 查看员工列表 action
-	private void listStaffsAction(ActionEvent e) {
-		// TODO add your code here
 	}
 
 	private void saleProductsAction(ActionEvent e) {
@@ -98,15 +94,15 @@ public class Home extends JFrame {
 
 			//======== staffMenu ========
 			{
-				staffMenu.setText("\u5458\u5de5\u7ba1\u7406");
+				staffMenu.setText("\u4eba\u5458\u7ba1\u7406");
 
 				//---- menuItem1 ----
-				menuItem1.setText("\u6dfb\u52a0\u65b0\u5458\u5de5");
+				menuItem1.setText("\u6dfb\u52a0\u65b0\u4eba\u5458");
 				menuItem1.addActionListener(e -> addNewStaffAction(e));
 				staffMenu.add(menuItem1);
 
 				//---- menuItem2 ----
-				menuItem2.setText("\u5458\u5de5\u5217\u8868");
+				menuItem2.setText("\u4eba\u5458\u5217\u8868");
 				menuItem2.addActionListener(e -> listStaffsAction(e));
 				staffMenu.add(menuItem2);
 			}

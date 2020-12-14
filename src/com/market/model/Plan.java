@@ -2,16 +2,21 @@ package com.market.model;
 
 public class Plan {
 	private int id;
-	private String name;
+	private int productId;
+	private String productName;
 	private int num; // 进货量
 	private float price; // 进货单价
-	
+
 	public int getId() {
 		return id;
 	}
+
+	public int getProductId() {
+		return productId;
+	}
 	
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 	
 	public int getNum() {
@@ -26,8 +31,12 @@ public class Plan {
 		this.id = id;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setProductId(int id) {
+		this.productId = id;
+	}
+	
+	public void setProductName(String name) {
+		this.productName = name;
 	}
 
 	public void setNum(int num) {

@@ -20,11 +20,13 @@ public class SaleRecordDao extends BaseDao {
             ResultSet executeQuery = preparedStatement.executeQuery();
             while(executeQuery.next()){
                 SaleRecord s = new SaleRecord();
-                s.setId(executeQuery.getInt("id"));
+                s.setId(executeQuery.getInt("sale_id"));
                 s.setNumber( executeQuery.getInt("number"));
-                s.setProductId(executeQuery.getInt("product_id"));
+                s.setProductId(executeQuery.getInt("goods_id"));
+                s.setStaffId(executeQuery.getInt("staff_id"));
                 s.setMoney(executeQuery.getInt("money"));
                 s.setStratey(executeQuery.getInt("stratey"));
+                s.setCreateTime(executeQuery.getString("createtime"));
                 retList.add(s);
             }
         } catch (SQLException e) {
@@ -53,7 +55,7 @@ public class SaleRecordDao extends BaseDao {
 	}
 
 	public SaleRecord getSaleRecord(int id) {
-		String sqlString = "select * from sale_record where id = ?";
+		String sqlString = "select * from sale_record where sale_id = ?";
 		SaleRecord s = null;
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
@@ -61,11 +63,13 @@ public class SaleRecordDao extends BaseDao {
             ResultSet executeQuery = preparedStatement.executeQuery();
             while(executeQuery.next()){
                 s = new SaleRecord();
-                s.setId(executeQuery.getInt("id"));
+                s.setId(executeQuery.getInt("sale_id"));
                 s.setNumber( executeQuery.getInt("number"));
-                s.setProductId(executeQuery.getInt("product_id"));
+                s.setProductId(executeQuery.getInt("goods_id"));
+                s.setStaffId(executeQuery.getInt("staff_id"));
                 s.setMoney(executeQuery.getInt("money"));
                 s.setStratey(executeQuery.getInt("stratey"));
+                s.setCreateTime(executeQuery.getString("createtime"));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -75,7 +79,7 @@ public class SaleRecordDao extends BaseDao {
 	}
 
 	public boolean delete(int id) {
-		String sqlString = "delete from sale_record where id = ?";
+		String sqlString = "delete from sale_record where sale_id = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.setInt(1, id);
