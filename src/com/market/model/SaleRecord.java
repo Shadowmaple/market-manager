@@ -35,7 +35,7 @@ public class SaleRecord {
 	public String getProductName() {
 		Product product = new Product();
 		ProductDao productDao = new ProductDao();
-		product = productDao.getStaffById(id);
+		product = productDao.getProductById(id);
 		return product.getName();
 	}
 	

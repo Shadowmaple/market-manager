@@ -5,27 +5,30 @@
 package com.market.view;
 
 import java.awt.event.*;
+import java.util.Vector;
+
 import javax.swing.*;
 import javax.swing.table.*;
+
+import com.market.dao.SaleRecordDao;
 
 /**
  * @author Mannix Zhang
  */
 public class SaleCondition extends JFrame {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public SaleCondition() {
 		initComponents();
 	}
-	
+
 	// 校验填入的日期是否合法
+	// TO DO
 	private boolean checkInputDate(int year, int month, int day) {
-		
+
 		return true;
 	}
-	
+
 	// 查询销售排行榜/报表
 	private void searchSaleConditionAction(ActionEvent e) {
 		// TODO add your code here
@@ -43,25 +46,39 @@ public class SaleCondition extends JFrame {
 		// 日报表
 		if (type == 0) {
 			beginTime = String.format("%d-%02d-%02d", year, month, day);
-			beginTime = String.format("%d-%02d-%02d", year, month, day+1);
+			endTime = String.format("%d-%02d-%02d", year, month, day+1);
 		} else if (type == 1) {
 			// TO DO:获取当月的最后一个天
-			int endDay = 0;
+			int endDay = 31;
 			beginTime = String.format("%d-%02d-01", year, month, day);
-			beginTime = String.format("%d-%02d-%02d", year, month, endDay);
+			endTime = String.format("%d-%02d-%02d", year, month, endDay);
 		} else {
 			beginTime = String.format("%d-01-01", year);
-			beginTime = String.format("%d-12-31", year);
+			endTime = String.format("%d-12-31", year);
 		}
-		
-		// TODO;
+
+		var saleDao = new SaleRecordDao();
+		var list = saleDao.searchSaleRank(beginTime, endTime);
+
+		// 填入 table
+		DefaultTableModel dft = (DefaultTableModel) rankTable.getModel();
+		dft.setRowCount(0);
+		int rank = 1;
+		for (var item : list) {
+			Vector<Object> v = new Vector<Object>();
+			v.add(rank);
+			v.add(item.getProductName());
+			v.add(item.getNumber());
+			v.add(item.getMoney());
+			dft.addRow(v);
+		}
 	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Mannix Zhang
 		scrollPane1 = new JScrollPane();
-		table1 = new JTable();
+		rankTable = new JTable();
 		button1 = new JButton();
 		typeComBox = new JComboBox<>();
 		label1 = new JLabel();
@@ -79,8 +96,8 @@ public class SaleCondition extends JFrame {
 		//======== scrollPane1 ========
 		{
 
-			//---- table1 ----
-			table1.setModel(new DefaultTableModel(
+			//---- rankTable ----
+			rankTable.setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null},
 					{null, null, null, null},
@@ -89,7 +106,7 @@ public class SaleCondition extends JFrame {
 					"\u6392\u540d", "\u5546\u54c1\u540d", "\u9500\u552e\u91cf", "\u9500\u552e\u603b\u989d"
 				}
 			));
-			scrollPane1.setViewportView(table1);
+			scrollPane1.setViewportView(rankTable);
 		}
 
 		//---- button1 ----
@@ -224,7 +241,7 @@ public class SaleCondition extends JFrame {
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	// Generated using JFormDesigner Evaluation license - Mannix Zhang
 	private JScrollPane scrollPane1;
-	private JTable table1;
+	private JTable rankTable;
 	private JButton button1;
 	private JComboBox<String> typeComBox;
 	private JLabel label1;

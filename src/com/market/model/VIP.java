@@ -8,7 +8,7 @@ public class VIP {
 	private float money; // 消费金额
 	private String createTime; // 发放时间
 	private String validityTime; // 有效截止时间
-	private Boolean isUse; // 是否在使用
+	private int isUse; // 是否在使用
 	
 	public int getId() {
 		return id;
@@ -30,7 +30,7 @@ public class VIP {
 		return validityTime;
 	}
 	
-	public Boolean getIsUse() {
+	public int getIsUse() {
 		return isUse;
 	}
 	
@@ -61,10 +61,10 @@ public class VIP {
 		this.validityTime = time;
 	}
 	
-	public void setIsUse(boolean use) {
+	public void setIsUse(int use) {
 		this.isUse = use;
 	}
-	
+
 	// to do
 	public static boolean checkValid(int id) {
 		return true;

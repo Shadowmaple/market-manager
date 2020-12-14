@@ -1,5 +1,6 @@
 package com.market.view;
 
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import com.market.model.Staff;
@@ -74,12 +75,13 @@ public class Home extends JFrame {
 		menuItem7 = new JMenuItem();
 		menu4 = new JMenu();
 		menuItem9 = new JMenuItem();
-		menuItem10 = new JMenuItem();
 		desktopPane = new JDesktopPane();
+		label1 = new JLabel();
 
 		//======== this ========
 		setTitle("\u8d85\u5e02\u96f6\u552e\u7ba1\u7406\u7cfb\u7edf");
 		var contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
 
 		//======== menuBar1 ========
 		{
@@ -162,31 +164,23 @@ public class Home extends JFrame {
 				//---- menuItem9 ----
 				menuItem9.setText("\u53d1\u653e\u4f1a\u5458\u5361");
 				menu4.add(menuItem9);
-
-				//---- menuItem10 ----
-				menuItem10.setText("\u67e5\u770b");
-				menu4.add(menuItem10);
 			}
 			menuBar1.add(menu4);
 		}
 		setJMenuBar(menuBar1);
 
-		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-		contentPane.setLayout(contentPaneLayout);
-		contentPaneLayout.setHorizontalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addGroup(contentPaneLayout.createSequentialGroup()
-					.addGap(341, 341, 341)
-					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(382, Short.MAX_VALUE))
-		);
-		contentPaneLayout.setVerticalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-					.addGap(231, 231, 231)
-					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(259, Short.MAX_VALUE))
-		);
+		//======== desktopPane ========
+		{
+			desktopPane.setBackground(Color.darkGray);
+
+			//---- label1 ----
+			label1.setText("\u5c0f\u578b\u8d85\u5e02\u96f6\u552e\u7ba1\u7406\u7cfb\u7edf");
+			label1.setFont(new Font(Font.DIALOG, Font.BOLD, 48));
+			label1.setForeground(Color.white);
+			desktopPane.add(label1, JLayeredPane.DEFAULT_LAYER);
+			label1.setBounds(155, 70, 540, 195);
+		}
+		contentPane.add(desktopPane, BorderLayout.CENTER);
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -212,7 +206,7 @@ public class Home extends JFrame {
 	private JMenuItem menuItem7;
 	private JMenu menu4;
 	private JMenuItem menuItem9;
-	private JMenuItem menuItem10;
 	private JDesktopPane desktopPane;
+	private JLabel label1;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

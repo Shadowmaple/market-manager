@@ -12,12 +12,12 @@ import com.market.model.Product;
 public class ProductDao extends BaseDao {
 	
 	public Product getProduct(String name) {
-		String sqlString = "select * from Product where name = ?";
+		String sqlString = "select * from goods where name = ?";
 		Product p = null;
 		try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
             preparedStatement.setString(1, name);
-            ResultSet executeQuery = preparedStatement.executeQuery();
+            ResultSet executeQuery = preparedStatement.executeQuery();            
 
             if(executeQuery.next()){
             	p = new Product();
@@ -36,7 +36,10 @@ public class ProductDao extends BaseDao {
 	
 	public List<Product> getProductList(Product product) {
         List<Product> retList = new ArrayList<Product>();
-        String sqlString = "select * from Product";
+        String sqlString = "select * from goods";
+        if (!product.getName().equals("")) {
+        	sqlString += " where name = '" + product.getName() + "'";
+        }
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
             ResultSet executeQuery = preparedStatement.executeQuery();
@@ -60,7 +63,7 @@ public class ProductDao extends BaseDao {
 		if (id == 0) return null;
 		
 		Product p = null;
-		String sqlString = "select * from product where id = '" + id + "'";
+		String sqlString = "select * from goods where id = '" + id + "'";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
             ResultSet executeQuery = preparedStatement.executeQuery();

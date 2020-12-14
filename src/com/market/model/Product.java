@@ -49,6 +49,18 @@ public class Product {
 		this.stratey = stratey;
 	}
 
+	// 判断库存状态
+	public String judgeRepoCondition() {
+		if (num >= 500) {
+			return "库存过剩";
+		} else if (num >= 50) {
+			return "正常";
+		} else if (num > 0) {
+			return "少货";
+		}
+		return "缺货";
+	}
+
 	// 根据 id 获取 name
 	public static String getNameById(int id) {
 		ProductDao d = new ProductDao();

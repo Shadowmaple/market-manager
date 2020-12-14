@@ -46,7 +46,7 @@ public class SellProducts extends JFrame {
 			}
 			vipValid = true;
 		}
-		
+
 		float totalFee = 0;
 		for (int i = 0; i < shoppingCartTable.getRowCount(); i++) {
 			var productId = Integer.valueOf(shoppingCartTable.getValueAt(i, 0).toString());
