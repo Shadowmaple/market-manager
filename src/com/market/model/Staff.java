@@ -1,5 +1,7 @@
 package com.market.model;
 
+import com.market.dao.StaffDao;
+
 public class Staff {
 	private int id;
 	private String name;
@@ -35,5 +37,12 @@ public class Staff {
 	}
 	public void setEntryTime(String time) {
 		this.entryTime = time;		
+	}
+	
+	public static String getNameById(int id) {
+		StaffDao d = new StaffDao();
+		var staff = d.getStaffById(id);
+		if (staff == null) return "";
+		return staff.getName();
 	}
 }

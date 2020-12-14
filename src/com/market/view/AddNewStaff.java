@@ -14,7 +14,7 @@ import com.market.model.Staff;
  */
 public class AddNewStaff extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public AddNewStaff() {
@@ -49,7 +49,7 @@ public class AddNewStaff extends JFrame {
 			JOptionPane.showMessageDialog(this, "添加失败");
 			return ;
 		}
-		JOptionPane.showMessageDialog(this, "添加新员工" + staff.getName() + "成功");		
+		JOptionPane.showMessageDialog(this, "添加新员工" + staff.getName() + "成功");
 		this.dispose();
 	}
 

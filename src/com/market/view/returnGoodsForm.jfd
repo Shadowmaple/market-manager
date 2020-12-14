@@ -1,0 +1,29 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:61:p, comp label1:::p:103:p, space :p:64:p, comp treatRecordNumTextField:::p:187:p}, seq l {space :p:161:p, comp button1:::p:84:p}}, space ::168:x}}"
+			"$verticalGroup": "par l {seq l {space :p:45:p, par b {comp label1::b:p:30:p, comp treatRecordNumTextField::b:p:29:p}, space :p:145:p, comp button1:::p:40:p, space ::156:x}}"
+		} ) {
+			name: "this"
+			"title": "退货"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "treatRecordNumTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "交易流水号"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "确认退货"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returnGoodsAction", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 585, 445 )
+		} )
+	}
+}

@@ -4,15 +4,98 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:40:p, comp scrollPane1:::p::p, space ::375:x}}"
-			"$verticalGroup": "par l {seq t {space ::73:x, comp scrollPane1:::p::p, space :p:61:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:40:p, comp scrollPane1:::p::p, space :60:60:p, par l {seq {comp updatePlanButtion:::p:112:p, space :p:50:p, comp deletePlanButton:::::x, space :p:41:p}, seq {par t {seq {par l:::p {comp label2::::71:x, comp label1::::71:x}, space :::x, par l {comp productNameTextField:::p:147:p, comp productPriceTextField:::p:147:p}}, comp addNewPlanButton::l:::x, seq l {comp label3:::p:71:p, space :66:66:p, comp productNumTextField:::p:147:p}}, space :p:31:p}}}, seq l {space :p:102:p, comp searchTextField:::p:171:p, space :67:67:p, comp button4:::p:76:p, space :::x}}"
+			"$verticalGroup": "par l {seq l {space :p:133:p, par l:::p {comp productNameTextField::::39:x, comp label1::::39:x}, space :p:31:p, par b {comp label2::b:p:28:p, comp productPriceTextField::b:p:39:p}, space :p:23:p, par l {comp label3:::p:39:p, comp productNumTextField:::p:39:p}, space :p:38:p, comp addNewPlanButton:::p:51:p, space :p:32:p, par b {comp updatePlanButtion::b:p:51:p, comp deletePlanButton::b:p:48:p}, space :::x}, seq t {space ::53:x, par l {seq l {space :1:1:p, comp searchTextField:::p:30:p}, comp button4:::p:31:p}, space :p:30:p, comp scrollPane1:::p:381:p, space :p:61:p}}"
 		} ) {
 			name: "this"
+			"title": "进货计划"
+			addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "thisMouseClicked", true ) )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectItemAction", true ) )
 				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
+					name: "planTable"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "编号" )
+						add( "名称" )
+						add( "单价" )
+						add( "数量" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
 				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "deletePlanButton"
+				"text": "删除"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deletePlanAction", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deletePlanAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "addNewPlanButton"
+				"text": "添加"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addNewPlanAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "searchTextField"
+				"text": "输入商品名"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "查询"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchPlansAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "productNameTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "名称"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "单价"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "productPriceTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "数量"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "productNumTextField"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "updatePlanButtion"
+				"text": "修改"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "updatePlanAction", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

@@ -1,6 +1,7 @@
 package com.market.model;
 
 import com.market.dao.ProductDao;
+import com.market.dao.SaleRecordDao;
 import com.market.dao.StaffDao;
 
 public class SaleRecord {
@@ -23,7 +24,7 @@ public class SaleRecord {
 	public int getProductId() {
 		return productId;
 	}
-	
+
 	public String getStaffName() {
 		Staff staff = new Staff();
 		StaffDao staffDao = new StaffDao();
@@ -80,5 +81,11 @@ public class SaleRecord {
 
 	public void setCreateTime(String time) {
 		this.createTime = time;
+	}
+	
+	// 根据 id 查询记录
+	public static SaleRecord getRecordById(int id) {
+		var dao = new SaleRecordDao();
+		return dao.getSaleRecord(id);
 	}
 }

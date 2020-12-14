@@ -1,0 +1,145 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:53:p, comp scrollPane1:::p::p, space :p:78:p, par l {comp label1:::p:88:p, comp label2:::p:88:p, comp label3::l:p:88:p, comp label4::l:p:88:p}, space ::38:x, par l {comp button1:::p:89:p, par t:l::p {comp typeComBox::l::89:x, comp dayComBox::l::89:x, comp monthComBox::l::89:x, comp yearTextField::l::89:x}}, space :p:154:p}}"
+			"$verticalGroup": "par l {seq l {space :p:78:p, comp scrollPane1:::p::p, space ::96:x}, seq t {space :p:115:p, par b {comp label1::b:p:39:p, comp typeComBox::b:p:39:p}, space :p:27:p, par l:::p {comp label2::::39:x, comp yearTextField::::39:x}, space u:::p, par b {comp label3::b:p:39:p, comp monthComBox::b:p:39:p}, space :p:26:p, par b {comp label4::b:p:39:p, comp dayComBox::b:p:39:p}, space ::82:x, comp button1:::p:37:p, space :p:141:p}}"
+		} ) {
+			name: "this"
+			"title": "销售情况"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "排名" )
+						add( "商品名" )
+						add( "销售量" )
+						add( "销售总额" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "查询"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchSaleConditionAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "typeComBox"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "日报表"
+					addElement( "日报表" )
+					addElement( "周报表" )
+					addElement( "年报表" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "报表类别："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "年"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "月"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "monthComBox"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "1"
+					addElement( "1" )
+					addElement( "2" )
+					addElement( "3" )
+					addElement( "4" )
+					addElement( "5" )
+					addElement( "6" )
+					addElement( "7" )
+					addElement( "8" )
+					addElement( "9" )
+					addElement( "10" )
+					addElement( "11" )
+					addElement( "12" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "日"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "dayComBox"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "1"
+					addElement( "1" )
+					addElement( "2" )
+					addElement( "3" )
+					addElement( "4" )
+					addElement( "5" )
+					addElement( "6" )
+					addElement( "7" )
+					addElement( "8" )
+					addElement( "9" )
+					addElement( "10" )
+					addElement( "11" )
+					addElement( "12" )
+					addElement( "13" )
+					addElement( "14" )
+					addElement( "15" )
+					addElement( "16" )
+					addElement( "17" )
+					addElement( "18" )
+					addElement( "19" )
+					addElement( "20" )
+					addElement( "21" )
+					addElement( "22" )
+					addElement( "23" )
+					addElement( "24" )
+					addElement( "25" )
+					addElement( "26" )
+					addElement( "27" )
+					addElement( "28" )
+					addElement( "29" )
+					addElement( "30" )
+					addElement( "31" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "yearTextField"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 955, 625 )
+		} )
+	}
+}
