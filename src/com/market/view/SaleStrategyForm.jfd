@@ -1,0 +1,48 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:67:p, par l {comp label1:::p:70:p, comp label2:::p::p, comp label3::l:p:70:p}, space :p:32:p, par l:::p {comp strategyOutputLabel::::134:x, comp nameTextField::::134:x, comp newStrategyTextField::::134:x}, space :p:59:p, par l {comp button2:::p:89:p, comp button1:::p:89:p}, space ::128:x}}"
+			"$verticalGroup": "par l {seq l {space :p:43:p, par l:::p {comp label1::::33:x, comp nameTextField::::33:x, comp button1::l::33:x}, space :p:31:p, par b {comp label3::b:p:33:p, comp strategyOutputLabel::b:p:33:p}, space :p:39:p, par b {comp button2::b:p:33:p, comp newStrategyTextField::b:p:33:p, comp label2::b:p:33:p}, space ::239:x}}"
+		} ) {
+			name: "this"
+			"title": "销售策略"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "商品名"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "nameTextField"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "查询"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchProductStrategyAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "修改"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "updateStrategyAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "newStrategyTextField"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "新的折扣（%）"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "折扣（%）"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "strategyOutputLabel"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 595, 480 )
+		} )
+	}
+}
