@@ -94,7 +94,7 @@ public class SaleRecordDao extends BaseDao {
 	public List<SaleRecord> searchSaleRank(String beginTime, String endTime) {
 		List<SaleRecord> retList = new ArrayList<SaleRecord>();
         String sqlString = "select goods_id, sum(number) as num, sum(money) as money from "
-        		+ "sale_record where createtime <= ? and createtime >= ? "
+        		+ "sale_record where createtime >= ? and createtime <= ? "
         		+ "group by goods_id";
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);

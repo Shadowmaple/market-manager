@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
 			"title": "超市零售管理系统"
-			"minimumSize": new java.awt.Dimension( 830, 650 )
+			"minimumSize": new java.awt.Dimension( 960, 700 )
 			add( new FormContainer( "javax.swing.JDesktopPane", new FormLayoutManager( class javax.swing.JDesktopPane ) ) {
 				name: "desktopPane"
 				"background": sfield java.awt.Color darkGray
@@ -33,6 +33,12 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem13"
 						"text": "退出登录"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "logoutAction", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem12"
+						"text": "退出系统"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exitSystemAction", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -58,16 +64,19 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "saleProductsAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem14"
-						"text": "销售策略"
-					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem6"
+						name: "saleRecordMenuItem"
 						"text": "销售记录"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "saleConditionOverviewAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem8"
+						name: "saleStrategyMenuItem"
+						"text": "销售策略"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "saleStrategyAction", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "returnGoodsMenuItem"
 						"text": "退货"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returnGoodsAction", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -76,32 +85,42 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem11"
 						"text": "库存查看"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "reposotoryOverviewAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem4"
 						"text": "进货计划"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "purchasePlanLookAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem5"
 						"text": "进货"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "purchaseGoodsAction", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem7"
 						"text": "进货记录"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "purchaseRecordOverviewAction", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
-					name: "menu4"
+					name: "vipMenu"
 					"text": "会员"
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem9"
 						"text": "发放会员卡"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "grantVIPCardAction", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem10"
+						"text": "会员卡续期"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "renewVIPCardAction", true ) )
 					} )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 50, 0 )
-			"size": new java.awt.Dimension( 830, 645 )
+			"size": new java.awt.Dimension( 960, 655 )
 		} )
 	}
 }

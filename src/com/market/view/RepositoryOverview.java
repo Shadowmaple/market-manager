@@ -24,7 +24,7 @@ public class RepositoryOverview extends JFrame {
 	// 监测库存预警
 	private void monitorRepoCondition() {
 		var productDao = new ProductDao();
-		var list = productDao.getProductList(new Product());
+		var list = productDao.getProductList(null);
 		if (list == null) {
 			return ;
 		}
@@ -34,6 +34,7 @@ public class RepositoryOverview extends JFrame {
 		var lack = new Vector<String>();
 		for (var p : list) {
 			var num = p.getNum();
+			System.out.println(num);
 			if (num > 500) {
 				redundant.add(p.getName());
 			} else if (num == 0) {
@@ -63,7 +64,7 @@ public class RepositoryOverview extends JFrame {
 		if (redundant.size() > 0) {
 			warning += "以下货物过剩：\n";
 			for (var s : redundant) {
-				warning += s + "\n";
+				warning += s + "；";
 			}
 			warning += "\n";
 		}
@@ -124,8 +125,6 @@ public class RepositoryOverview extends JFrame {
 			//---- repoTable ----
 			repoTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null},
-					{null, null, null, null},
 				},
 				new String[] {
 					"\u5546\u54c1\u7f16\u53f7", "\u540d\u79f0", "\u5e93\u5b58\u91cf", "\u72b6\u6001"
@@ -148,7 +147,7 @@ public class RepositoryOverview extends JFrame {
 							.addComponent(searchTextField, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
 							.addGap(48, 48, 48)
 							.addComponent(button1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(410, Short.MAX_VALUE))
+					.addContainerGap(195, Short.MAX_VALUE))
 		);
 		contentPaneLayout.setVerticalGroup(
 			contentPaneLayout.createParallelGroup()

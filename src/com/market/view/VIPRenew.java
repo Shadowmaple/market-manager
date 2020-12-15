@@ -36,7 +36,7 @@ public class VIPRenew extends JFrame {
 		var dao = new VIPDao();
 		var vipCard = dao.getVIPById(id);
 		if (vipCard == null) {
-			JOptionPane.showMessageDialog(this, "失败");
+			JOptionPane.showMessageDialog(this, "该卡不存在");
 			return ;
 		}
 		if (vipCard.getIsUse() == 0) {
@@ -45,6 +45,12 @@ public class VIPRenew extends JFrame {
 		}
 
 		vipCard.setValidityTime(Time.getTimeAfterMonths(vipCard.getValidityTime(), month));
+		var ok = dao.updateValidityTime(vipCard);
+		dao.closeDao();
+		if (!ok) {
+			JOptionPane.showMessageDialog(this, "续费失败");
+			return ;
+		}
 		JOptionPane.showMessageDialog(this, "续费成功");
 	}
 

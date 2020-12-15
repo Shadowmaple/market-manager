@@ -43,7 +43,6 @@ public class StaffDao extends BaseDao {
 			prst.setInt(3, staff.getType());
 			prst.setString(4, staff.getEntryTime());
 			if(prst.executeUpdate() > 0) return true;
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +75,7 @@ public class StaffDao extends BaseDao {
 		if (id == 0) return null;
 
 		Staff staff = null;
-		String sqlString = "select * from staff where staff_id = '" + id + "'";
+		String sqlString = "select * from staff where staff_id = " + id;
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
             ResultSet executeQuery = preparedStatement.executeQuery();
@@ -92,5 +91,54 @@ public class StaffDao extends BaseDao {
             e.printStackTrace();
         }
         return staff;
+	}
+	
+	public Staff getStaffByName(String name) {
+		Staff staff = null;
+		String sqlString = "select * from staff where staff_name = ?";
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sqlString);
+            preparedStatement.setString(1, name);
+            ResultSet executeQuery = preparedStatement.executeQuery();
+            if (executeQuery.next()) {
+                staff = new Staff();
+                staff.setId(executeQuery.getInt("staff_id"));
+                staff.setName(executeQuery.getString("staff_name"));
+                staff.setType(executeQuery.getInt("staff_type"));
+                staff.setEntryTime(executeQuery.getString("entry_time"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return staff;
+	}
+
+	public boolean deleteById(int id) {
+		String sql = "delete from staff where staff_id = ?";
+		try {
+			PreparedStatement prst = con.prepareStatement(sql);
+			prst.setInt(1, id);
+			if(prst.executeUpdate() > 0) return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean update(Staff staff) {
+		String sql = "update staff set staff_name = ?, staff_type = ? where staff_id = ?";
+		try {
+			PreparedStatement prst = con.prepareStatement(sql);
+			prst.setString(1, staff.getName());
+			prst.setInt(2, staff.getType());
+			prst.setInt(3, staff.getId());
+			if(prst.executeUpdate() > 0) return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

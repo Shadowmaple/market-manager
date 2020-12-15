@@ -13,6 +13,10 @@ public class PurchaseRecordDao extends BaseDao {
 	public List<PurchaseRecord> getPurchaseRecordList(PurchaseRecord record) {
         List<PurchaseRecord> retList = new ArrayList<PurchaseRecord>();
         String sqlString = "select * from pur_record";
+        
+        if (record != null && record.getProductId() != 0) {
+        	sqlString += " where goods_id = " + record.getProductId();
+        }
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
@@ -38,7 +42,7 @@ public class PurchaseRecordDao extends BaseDao {
 	public boolean create(PurchaseRecord record) {
 		if (record == null) return false;
 
-		String sqlString = "insert into sale_record(staff_id, goods_id, number, price, money, createtime) values(?, ?, ?, ?, ?, ?)";
+		String sqlString = "insert into pur_record(staff_id, goods_id, number, price, money, createtime) values(?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);

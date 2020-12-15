@@ -14,8 +14,8 @@ import com.market.model.SaleRecord;
 /**
  * @author Mannix Zhang
  */
-public class returnGoodsForm extends JFrame {
-	public returnGoodsForm() {
+public class ReturnGoodsForm extends JFrame {
+	public ReturnGoodsForm() {
 		initComponents();
 	}
 

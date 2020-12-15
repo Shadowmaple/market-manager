@@ -25,7 +25,6 @@ public class GrantVIPCard extends JFrame {
 
 	// 发放会员卡
 	private void grantVIPCardAction(ActionEvent e) {
-		// TODO add your code here
 		String name = nameTextField.getText().toString();
 		int validMonth = Integer.valueOf(validMonthTExtField.getText().toString());
 		if (name.equals("") || validMonth <= 0) {
@@ -36,15 +35,16 @@ public class GrantVIPCard extends JFrame {
 		var vip = new VIP();
 		vip.setName(name);
 		vip.setCreateTime(Time.getCurrentTime());
-		vip.setValidityTime(Time.getTimeAfterMonths(validMonth));
+		vip.setValidityTime(Time.getTimeAfterMonths(Time.getCurrentTime(), validMonth));
 		var dao = new VIPDao();
 		var ok = dao.create(vip);
-		dao.closeDao();
 		if (!ok) {
 			JOptionPane.showMessageDialog(this, "失败");
+			dao.closeDao();
 			return ;
 		}
-
+		
+		vip = dao.getVIPByName(name);
 		JOptionPane.showMessageDialog(this, "新发放的会员卡号是" + vip.getId());
 	}
 

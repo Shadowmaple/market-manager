@@ -49,7 +49,7 @@ public class SellProducts extends JFrame {
 		for (int i = 0; i < shoppingCartTable.getRowCount(); i++) {
 			var productId = Integer.valueOf(shoppingCartTable.getValueAt(i, 0).toString());
 			var productPrice = Float.valueOf(shoppingCartTable.getValueAt(i, 2).toString());
-			var productNum = Integer.valueOf(shoppingCartTable.getValueAt(i, 3).toString());
+			var productNum = Integer.valueOf(shoppingCartTable.getValueAt(i, 3).toString());			
 
 			var product = Product.getById(productId);
 			if (product == null) {
@@ -76,10 +76,13 @@ public class SellProducts extends JFrame {
 			if (!ok) {
 				JOptionPane.showMessageDialog(this, "失败");
 				return ;
-			}
+			}			
 		}
 
 		needPayTextField.setText(String.valueOf(totalFee));
+		// 清空购物车
+		DefaultTableModel dft = (DefaultTableModel) shoppingCartTable.getModel();
+		dft.setRowCount(0);
 	}
 	
 	// 判断字符串是商品名还是商品编号

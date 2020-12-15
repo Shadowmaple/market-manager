@@ -38,7 +38,7 @@ public class ProductDao extends BaseDao {
 	public List<Product> getProductList(Product product) {
         List<Product> retList = new ArrayList<Product>();
         String sqlString = "select * from goods";
-        if (!product.getName().equals("")) {
+        if (product != null && !"".equals(product.getName())) {
         	sqlString += " where goods_name = '" + product.getName() + "'";
         }
         try {
@@ -84,5 +84,19 @@ public class ProductDao extends BaseDao {
             e.printStackTrace();
         }
 		return p;
+	}
+
+	public boolean update(Product product) {
+		String sqlString = "update goods set stratey = ? where goods_id = ?";
+		try {
+            PreparedStatement preparedStatement = con.prepareStatement(sqlString);
+            preparedStatement.setInt(1, product.getStratey());
+            preparedStatement.setInt(2, product.getId());
+            if (preparedStatement.executeUpdate() > 0) return true;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		return false;
 	}
 }

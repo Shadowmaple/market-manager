@@ -28,14 +28,14 @@ public class SaleRecord {
 	public String getStaffName() {
 		Staff staff = new Staff();
 		StaffDao staffDao = new StaffDao();
-		staff = staffDao.getStaffById(id);
+		staff = staffDao.getStaffById(staffId);
 		return staff.getName();
 	}
 
 	public String getProductName() {
-		Product product = new Product();
-		ProductDao productDao = new ProductDao();
-		product = productDao.getProductById(id);
+		var productDao = new ProductDao();
+		var product = productDao.getProductById(productId);
+		if (product == null) return "";
 		return product.getName();
 	}
 

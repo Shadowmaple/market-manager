@@ -1,6 +1,12 @@
 package com.market.model;
 
+import java.util.Map;
+
 import com.market.dao.StaffDao;
+import com.sun.org.apache.xpath.internal.operations.Equals;
+import com.sun.tools.javadoc.main.TypeMaker;
+
+import jdk.nashorn.internal.codegen.TypeMap;
 
 public class Staff {
 	private int id;
@@ -8,6 +14,9 @@ public class Staff {
 	private String password;
 	private int type;
 	private String entryTime;
+	
+	private static String[] typeMap = {"收银员", "进货员", "管理员"};
+
 	public int getId() {
 		return id;
 	}
@@ -44,5 +53,18 @@ public class Staff {
 		var staff = d.getStaffById(id);
 		if (staff == null) return "";
 		return staff.getName();
+	}
+
+	public String getTypeForRole() {
+		return typeMap[type];
+	}
+	
+	public static int gettypeIntByRoleStr(String s) {
+		for (int i = 0; i < 3; i++) {
+			if (s.equals(typeMap[i])) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

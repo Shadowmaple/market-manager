@@ -4,7 +4,6 @@
 
 package com.market.view;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
@@ -33,9 +32,8 @@ public class PurchaseForm extends JFrame {
 
 	// 导入进货计划
 	private void importPurchasePlansAction(ActionEvent e) {
-		// TODO add your code here
 		var planDao = new PlanDao();
-		var list = planDao.getPlanList(new Plan());
+		var list = planDao.getPlanList(null);
 		planDao.closeDao();
 		if (list == null) {
 			JOptionPane.showMessageDialog(this, "导入失败");
@@ -48,7 +46,7 @@ public class PurchaseForm extends JFrame {
 		for (var p : list) {
 			Vector<Object> v = new Vector<Object>();
 			v.add(p.getId());
-			v.add(p.getName());
+			v.add(p.getProductName());
 			v.add(p.getPrice());
 			v.add(p.getNum());
 			v.add(p.getPrice() * p.getNum());
@@ -107,8 +105,6 @@ public class PurchaseForm extends JFrame {
 			//---- productPlanTable ----
 			productPlanTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null, null},
-					{null, null, null, null, null},
 				},
 				new String[] {
 					"\u7f16\u53f7", "\u540d\u79f0", "\u5355\u4ef7", "\u6570\u91cf", "\u603b\u91d1\u989d"

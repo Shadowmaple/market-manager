@@ -22,7 +22,13 @@ public class SaleCondition extends JFrame {
 	// 查询销售排行榜/报表
 	private void searchSaleConditionAction(ActionEvent e) {
 		int type = typeComBox.getSelectedIndex();
-		int year = Integer.valueOf(yearTextField.getText().toString());
+		int year = 0;
+		try {
+			year = Integer.valueOf(yearTextField.getText().toString());
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(this, "填入的时间无效");
+			return ;
+		}
 		int month = monthComBox.getSelectedIndex() + 1;
 		int day = dayComBox.getSelectedIndex() + 1;
 
@@ -47,6 +53,15 @@ public class SaleCondition extends JFrame {
 
 		var saleDao = new SaleRecordDao();
 		var list = saleDao.searchSaleRank(beginTime, endTime);
+		if (list == null) {
+			JOptionPane.showMessageDialog(this, "获取失败");
+			return ;
+		}
+
+		if (list.size() == 0) {
+			JOptionPane.showMessageDialog(this, "无数据");
+			return ;
+		}
 
 		// 填入 table
 		DefaultTableModel dft = (DefaultTableModel) rankTable.getModel();
@@ -54,7 +69,7 @@ public class SaleCondition extends JFrame {
 		int rank = 1;
 		for (var item : list) {
 			Vector<Object> v = new Vector<Object>();
-			v.add(rank);
+			v.add(rank++);
 			v.add(item.getProductName());
 			v.add(item.getNumber());
 			v.add(item.getMoney());
@@ -87,8 +102,6 @@ public class SaleCondition extends JFrame {
 			//---- rankTable ----
 			rankTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null},
-					{null, null, null, null},
 				},
 				new String[] {
 					"\u6392\u540d", "\u5546\u54c1\u540d", "\u9500\u552e\u91cf", "\u9500\u552e\u603b\u989d"
@@ -104,7 +117,7 @@ public class SaleCondition extends JFrame {
 		//---- typeComBox ----
 		typeComBox.setModel(new DefaultComboBoxModel<>(new String[] {
 			"\u65e5\u62a5\u8868",
-			"\u5468\u62a5\u8868",
+			"\u6708\u62a5\u8868",
 			"\u5e74\u62a5\u8868"
 		}));
 
@@ -170,6 +183,9 @@ public class SaleCondition extends JFrame {
 			"30",
 			"31"
 		}));
+
+		//---- yearTextField ----
+		yearTextField.setText("2020");
 
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);

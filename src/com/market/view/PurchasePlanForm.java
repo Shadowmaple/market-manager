@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import com.market.dao.PlanDao;
+import com.market.dao.ProductDao;
 import com.market.model.Plan;
 
 /**
@@ -32,7 +33,7 @@ public class PurchasePlanForm extends JFrame {
 		String key = searchTextField.getText().toString();
 
 		var plan = new Plan();
-		plan.setName(key);
+		plan.setProductName(key);
 		var planDao = new PlanDao();
 		var list = planDao.getPlanList(plan);
 		planDao.closeDao();
@@ -47,7 +48,7 @@ public class PurchasePlanForm extends JFrame {
 		for (var p : list) {
 			Vector<Object> v = new Vector<Object>();
 			v.add(p.getId());
-			v.add(p.getName());
+			v.add(p.getProductName());
 			v.add(p.getPrice());
 			v.add(p.getNum());
 			dft.addRow(v);
@@ -73,7 +74,8 @@ public class PurchasePlanForm extends JFrame {
 			return ;
         }
 
-        planTable.remove(index);
+        // to do:移除删除的
+        // planTable.remove(index);
         JOptionPane.showMessageDialog(this, "删除成功");
 	}
 
@@ -86,8 +88,18 @@ public class PurchasePlanForm extends JFrame {
 			return ;
 		}
 
+		var productDao = new ProductDao();
+		var product =  productDao.getProduct(name);
+		productDao.closeDao();
+		// 不存在的时候创建商品
+		// to do
+		if (product == null) {
+			
+		}
+		
 		var plan = new Plan();
-		plan.setName(name);
+		plan.setProductId(product.getId());
+		plan.setProductName(name);
 		plan.setPrice(price);
 		plan.setNum(num);
 
@@ -103,7 +115,6 @@ public class PurchasePlanForm extends JFrame {
 	}
 
 	private void updatePlanAction(ActionEvent e) {
-		// TODO add your code here
 		String name = productNameTextField.getText().toString();
 		float price = Float.valueOf(productPriceTextField.getText().toString());
 		int num = Integer.valueOf(productNumTextField.getText().toString());
@@ -123,7 +134,7 @@ public class PurchasePlanForm extends JFrame {
 
         var plan = new Plan();
         plan.setId(id);
-        plan.setName(name);
+        plan.setProductName(name);
         plan.setPrice(price);
         plan.setNum(num);
 
@@ -139,16 +150,19 @@ public class PurchasePlanForm extends JFrame {
 	}
 
 	// 点击 table 中事件，即选中某一行
-	private void selectItemAction(MouseEvent e) {
-		// TODO add your code here
+	private void selectItemAction(MouseEvent e) {	
+		var idx = planTable.getSelectedRow();
+		if (idx < 0) {
+			return ;
+		}
+
 		DefaultTableModel dft = (DefaultTableModel) planTable.getModel();
-		var selectedName = dft.getValueAt(planTable.getSelectedRow(), 1).toString();
-		var selectedPrice = dft.getValueAt(planTable.getSelectedRow(), 2).toString();
-		var selectedNum = dft.getValueAt(planTable.getSelectedRow(), 3).toString();
+		var selectedName = dft.getValueAt(idx, 1).toString();
+		var selectedPrice = dft.getValueAt(idx, 2).toString();
+		var selectedNum = dft.getValueAt(idx, 3).toString();
         productNameTextField.setText(selectedName);
         productPriceTextField.setText(selectedPrice);
         productNumTextField.setText(selectedNum);
-		JOptionPane.showMessageDialog(this, "选中");
 
         // 选中后添加按钮失效，即默认操作为修改或删除，无法添加
         addNewPlanButton.setEnabled(false);
@@ -203,13 +217,17 @@ public class PurchasePlanForm extends JFrame {
 			//---- planTable ----
 			planTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{null, null, null, null},
-					{null, null, null, null},
 				},
 				new String[] {
 					"\u7f16\u53f7", "\u540d\u79f0", "\u5355\u4ef7", "\u6570\u91cf"
 				}
 			));
+			planTable.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					selectItemAction(e);
+				}
+			});
 			scrollPane1.setViewportView(planTable);
 		}
 
@@ -224,9 +242,6 @@ public class PurchasePlanForm extends JFrame {
 		addNewPlanButton.setText("\u6dfb\u52a0");
 		addNewPlanButton.addActionListener(e -> addNewPlanAction(e));
 
-		//---- searchTextField ----
-		searchTextField.setText("\u8f93\u5165\u5546\u54c1\u540d");
-
 		//---- button4 ----
 		button4.setText("\u67e5\u8be2");
 		button4.addActionListener(e -> searchPlansAction(e));
@@ -235,7 +250,7 @@ public class PurchasePlanForm extends JFrame {
 		label1.setText("\u540d\u79f0");
 
 		//---- label2 ----
-		label2.setText("\u5355\u4ef7");
+		label2.setText("\u6279\u53d1\u5355\u4ef7");
 
 		//---- label3 ----
 		label3.setText("\u6570\u91cf");
