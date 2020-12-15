@@ -24,7 +24,7 @@ public class Staff {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.name = password;
+		this.password = password;
 	}
 	public int getType() {
 		return type;

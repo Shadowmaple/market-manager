@@ -16,8 +16,9 @@ public class StaffDao extends BaseDao {
 			PreparedStatement prst = con.prepareStatement(sql);
 			prst.setString(1, staff.getName());
 			prst.setString(2, staff.getPassword());
+
 			ResultSet executeQuery = prst.executeQuery();
-			if(executeQuery.next()) {
+			if(executeQuery.next()) {				
 				StaffRst = new Staff();
 				StaffRst.setId(executeQuery.getInt("staff_id"));
 				StaffRst.setName(executeQuery.getString("staff_name"));

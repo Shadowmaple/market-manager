@@ -65,9 +65,10 @@ public class ProductDao extends BaseDao {
 		if (id == 0) return null;
 
 		Product p = null;
-		String sqlString = "select * from goods where goods_id = '" + id + "'";
+		String sqlString = "select * from goods where goods_id = ?";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
+            preparedStatement.setInt(1, id);
             ResultSet executeQuery = preparedStatement.executeQuery();
             if (executeQuery.next()) {
                 p = new Product();

@@ -20,7 +20,7 @@ public class AddNewStaff extends JFrame {
 
 	private void quitAction(ActionEvent e) {
 		// TODO add your code here
-		System.exit(0);
+		this.dispose();
 	}
 
 	private void AddStaffAction(ActionEvent e) {

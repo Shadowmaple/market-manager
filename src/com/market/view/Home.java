@@ -47,7 +47,11 @@ public class Home extends JFrame {
 		// TODO add your code here
 		SellProducts sellProductsForm = new SellProducts(userId);
 		sellProductsForm.setVisible(true);
-		desktopPane.add(sellProductsForm);
+//		desktopPane.add(sellProductsForm);
+	}
+
+	private void listStaffsAction(ActionEvent e) {
+		// TODO add your code here
 	}
 
 	private void initComponents() {
@@ -76,6 +80,7 @@ public class Home extends JFrame {
 
 		//======== this ========
 		setTitle("\u8d85\u5e02\u96f6\u552e\u7ba1\u7406\u7cfb\u7edf");
+		setMinimumSize(new Dimension(830, 650));
 		var contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
@@ -168,6 +173,7 @@ public class Home extends JFrame {
 		//======== desktopPane ========
 		{
 			desktopPane.setBackground(Color.darkGray);
+			desktopPane.setMinimumSize(new Dimension(830, 645));
 
 			//---- label1 ----
 			label1.setText("\u5c0f\u578b\u8d85\u5e02\u96f6\u552e\u7ba1\u7406\u7cfb\u7edf");

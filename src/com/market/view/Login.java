@@ -11,8 +11,6 @@ import javax.swing.*;
 import com.market.dao.StaffDao;
 import com.market.model.Staff;
 
-import net.miginfocom.swing.*;
-
 /**
  * @author Mannix Zhang
  */
@@ -52,9 +50,6 @@ public class Login extends JFrame {
 		}
 		System.out.println("OK");
 		Staff staff = new Staff();
-//		this.dispose();
-//		new Home(staff).setVisible(true);
-//		return ;
 		StaffDao staffDao = new StaffDao();
 		staff.setName(username);
 		staff.setPassword(password);

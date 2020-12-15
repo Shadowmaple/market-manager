@@ -21,9 +21,7 @@ import com.market.util.Time;
  * @author Mannix Zhang
  */
 public class SellProducts extends JFrame {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private int userId;
 	public SellProducts(int userId) {
@@ -83,23 +81,43 @@ public class SellProducts extends JFrame {
 
 		needPayTextField.setText(String.valueOf(totalFee));
 	}
+	
+	// 判断字符串是商品名还是商品编号
+	// 0->名，1->编号
+	private int checkInputIsNameOrId(String key) {
+		try {
+			Integer.valueOf(key);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
+		return 1;
+	}
 
 	// 加入购物车
 	private void addToShoppingCartAction(ActionEvent e) {
-		String name = productNameTextField.getText().toString();
-		int num = Integer.valueOf(productNumberTextField.getText().toString());
-		if (name.equals("") || num < 1) {
+		// 输入的是商品名或商品编号
+		String key = productNameTextField.getText().toString();
+		int num = Integer.valueOf(productNumberTextField.getText().toString());		
+		if (key.equals("") || num < 1) {
 			JOptionPane.showMessageDialog(this, "输入错误");
 			return ;
 		}
+		
+		var kind = checkInputIsNameOrId(key);
 
 		Product product = new Product();
-		product.setName(name);
 		ProductDao productDao = new ProductDao();
-		product = productDao.getProduct(name);
+		if (kind == 0) {
+			product = productDao.getProduct(key);
+		} else if (kind == 1) {
+			product = productDao.getProductById(Integer.valueOf(key));
+		}
 		productDao.closeDao();
+
 		if (product == null) {
-			JOptionPane.showMessageDialog(this, "失败");
+			System.out.println("数据库查询商品 " + key + "失败");
+			JOptionPane.showMessageDialog(this, "该商品不存在");
 			return ;
 		}
 
@@ -177,7 +195,6 @@ public class SellProducts extends JFrame {
 			//---- shoppingCartTable ----
 			shoppingCartTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{"", null, "", null},
 				},
 				new String[] {
 					"\u7f16\u53f7", "\u5546\u54c1\u540d\u79f0", "\u4ef7\u683c", "\u6570\u91cf"
