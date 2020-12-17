@@ -22,7 +22,7 @@ create table goods(
 	goods_num int default 0,
 	sell_price float not null,-- 出售价
 	pur_price float not null, -- 进货价
-	stratey tinyint default 0
+	stratey tinyint default 100
 );
 
 insert goods(goods_name,goods_num,sell_price,pur_price) values('鸡蛋',1000,10,5);
@@ -77,7 +77,7 @@ create table pur_plan(
 	goods_id int,
 	goods_name varchar(20),
 	num int default 0,
-	pirce float not null comment "进货单价",
+	price float not null comment "进货单价",
 	foreign key(goods_id) references goods(goods_id)
 );
 
