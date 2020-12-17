@@ -5,13 +5,40 @@ import com.market.dao.SaleRecordDao;
 import com.market.dao.StaffDao;
 
 public class SaleRecord {
+	private static int num = 1;
 	private int id;
 	private int staffId;
 	private int productId;
 	private int number; // 数量
 	private float money; // 销售总金额
+	private float profit;//销售总利润
 	private int stratey; // 销售策略
 	private String createTime; // 销售时间
+	private String belong;
+	
+	public static void setNum() {
+		num++;
+	}
+	public SaleRecord() {
+		belong = "2020";
+		belong = belong + num;
+	}
+
+	public float getProfit() {
+		return profit;
+	}
+
+	public void setProfit(float profit) {
+		this.profit = profit;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
 
 	public int getId() {
 		return id;
@@ -84,8 +111,8 @@ public class SaleRecord {
 	}
 
 	// 根据 id 查询记录
-	public static SaleRecord getRecordById(int id) {
+	public static SaleRecord getRecordById(String belong,int id) {
 		var dao = new SaleRecordDao();
-		return dao.getSaleRecord(id);
+		return dao.getSaleRecord(belong,id);
 	}
 }

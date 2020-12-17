@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:61:p, comp label1:::p:103:p, space :p:64:p, comp treatRecordNumTextField:::p:187:p}, seq l {space :p:161:p, comp button1:::p:84:p}}, space ::168:x}}"
-			"$verticalGroup": "par l {seq l {space :p:45:p, par b {comp label1::b:p:30:p, comp treatRecordNumTextField::b:p:29:p}, space :p:145:p, comp button1:::p:40:p, space ::156:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:161:p, comp button1:::p:84:p}, seq l {space :p:61:p, par l {comp label1:::p:103:p, comp label2:::p:54:p}, space :p:64:p, par l:::p {comp treatRecordNumTextField::::187:x, comp goodsidtextField::::187:x}}}, space ::168:x}}"
+			"$verticalGroup": "par l {seq l {space :p:45:p, par b {comp label1::b:p:30:p, comp treatRecordNumTextField::b:p:29:p}, space s:::p, par l:::p {comp goodsidtextField::::31:x, comp label2::::31:x}, space :p:85:p, comp button1:::p:40:p, space ::167:x}}"
 		} ) {
 			name: "this"
 			"title": "退货"
@@ -20,6 +20,13 @@ new FormModel {
 				name: "button1"
 				"text": "确认退货"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returnGoodsAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "商品号"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "goodsidtextField"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

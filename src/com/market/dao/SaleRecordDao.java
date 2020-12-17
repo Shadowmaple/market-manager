@@ -37,7 +37,7 @@ public class SaleRecordDao extends BaseDao {
     }
 
 	public boolean create(SaleRecord record) {
-		String sqlString = "insert into sale_record(staff_id, goods_id, number, money, stratey, createtime) values(?, ?, ?, ?, ?, ?)";
+		String sqlString = "insert into sale_record(staff_id, goods_id, number, money, stratey, createtime,profit,belong) values(?, ?, ?, ?, ?, ?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.setInt(1, record.getStaffId());
@@ -46,6 +46,8 @@ public class SaleRecordDao extends BaseDao {
             ps.setFloat(4, record.getMoney());
             ps.setInt(5, record.getStratey());
             ps.setString(6,  record.getCreateTime());
+            ps.setFloat(7,record.getProfit());
+            ps.setString(8,record.getBelong());
             if(ps.executeUpdate() > 0) return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -54,12 +56,13 @@ public class SaleRecordDao extends BaseDao {
         return false;
 	}
 
-	public SaleRecord getSaleRecord(int id) {
-		String sqlString = "select * from sale_record where sale_id = ?";
+	public SaleRecord getSaleRecord(String belong,int id) {
+		String sqlString = "select * from sale_record where belong = ? and goods_id = ?";
 		SaleRecord s = null;
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sqlString);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1,belong);
+            preparedStatement.setInt(2, id);
             ResultSet executeQuery = preparedStatement.executeQuery();
             while(executeQuery.next()){
                 s = new SaleRecord();
@@ -78,11 +81,12 @@ public class SaleRecordDao extends BaseDao {
         return s;
 	}
 
-	public boolean delete(int id) {
-		String sqlString = "delete from sale_record where sale_id = ?";
+	public boolean delete(String belong,int id) {
+		String sqlString = "delete from sale_record where belong = ? and goods_id = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
-            ps.setInt(1, id);
+            ps.setString(1,belong);
+            ps.setInt(2, id);
             if(ps.executeUpdate() > 0) return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -95,7 +99,7 @@ public class SaleRecordDao extends BaseDao {
 		List<SaleRecord> retList = new ArrayList<SaleRecord>();
         String sqlString = "select goods_id, sum(number) as num, sum(money) as money from "
         		+ "sale_record where createtime >= ? and createtime <= ? "
-        		+ "group by goods_id";
+        		+ "group by goods_id order by sum(money) desc";
         try {
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.setString(1, beginTime);

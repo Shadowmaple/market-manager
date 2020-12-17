@@ -25,7 +25,7 @@ public class ProductDao extends BaseDao {
                 p.setName(executeQuery.getString("goods_name"));
                 p.setNum(executeQuery.getInt("goods_num"));
                 p.setPrice(executeQuery.getFloat("sell_price"));
-                p.setPrice(executeQuery.getFloat("pur_price"));
+                p.setPurchasePrice(executeQuery.getFloat("pur_price"));
                 p.setStratey(executeQuery.getInt("stratey"));
             }
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class ProductDao extends BaseDao {
                 p.setName(executeQuery.getString("goods_name"));
                 p.setNum(executeQuery.getInt("goods_num"));
                 p.setPrice(executeQuery.getFloat("sell_price"));
-                p.setPrice(executeQuery.getFloat("pur_price"));
+                p.setPurchasePrice(executeQuery.getFloat("pur_price"));
                 p.setStratey(executeQuery.getInt("stratey"));
             }
         } catch (SQLException e) {

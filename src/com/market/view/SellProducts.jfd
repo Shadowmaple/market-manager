@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:62:p, par l {comp label2:::p:97:p, comp scrollPane1:::p:322:p}, space :p:56:p, par l {seq {comp button4:::p:100:p, space ::74:x, comp button2:::p:100:p}, seq l {par t:::p {comp button5::l::102:x, comp label8::l::102:x, seq l {comp label3::::100:x, space :p:2:p}}, par l {seq l {space :10:10:p, comp vipCardTextField:::p:162:p}, seq {space :p:66:p, comp button1:::::x}, seq {space :p:10:p, comp needPayTextField:::::x}}}, seq l {par t:::p {comp label7::::100:x, comp label4::::100:x}, space :::p, par l {comp realPayTextField::l:::x, comp chargeTextField::t:p:162:p}}, seq t {par l {comp label6:::::x, seq l {space :3:3:p, comp label5:::::x}}, space :::p, par l:::p {comp productNameTextField::t:::x, comp productNumberTextField::t:p:162:p}}}, space :p:59:p, comp button3:::p:97:p, space :p:28:p}}"
-			"$verticalGroup": "par l {seq {par l {seq t {space :p:63:p, comp label2:::p:30:p, space :p:44:p, comp scrollPane1::::384:x}, seq t {space ::50:x, par b {comp productNameTextField::b:p:31:p, comp label5::b:p:31:p}, space :p:28:p, par b {comp productNumberTextField::b:p:31:p, comp label6::b:p:31:p}, space s:::p, par l {comp vipCardTextField:::p:31:p, comp label8:::p:31:p}, space :p:42:p, par b {comp button1::b:p:44:p, comp button5::b:p:44:p}, space :p:36:p, par b {comp needPayTextField::b:p:31:p, comp label3::b:p:33:p}, space s:::p, par b {comp realPayTextField::b:p:31:p, comp label4::b:p:33:p}, space s:::p, par b {comp chargeTextField::b:p:31:p, comp label7::b:p:33:p}, space :p:30:p, par b {comp button2::b:p:45:p, comp button4::b:p:45:p, comp button3::b:p:45:p}}}, space :55:55:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:62:p, par l {comp label2:::p:97:p, comp scrollPane1:::p:322:p}, space :p:56:p, par l {seq {comp button4:::p:100:p, space ::74:x, comp button2:::p:100:p}, seq l {par t:::p {comp button5::l::102:x, comp label8::l::102:x, seq l {comp label3::::100:x, space :p:2:p}}, par l {seq l {space :10:10:p, comp vipCardTextField:::p:162:p}, seq {space :p:66:p, comp button1:::::x}, seq {space :p:10:p, comp needPayTextField:::::x}}}, seq l {par t:::p {comp label7::::100:x, comp label4::::100:x}, space :::p, par l {comp realPayTextField::l:::x, comp chargeTextField::t:p:162:p}}, seq t {par l {comp label6:::::x, seq l {space :3:3:p, comp label5:::::x}}, space :::p, par l:::p {comp productNameTextField::t:::x, comp productNumberTextField::t:p:162:p}}}, space :p:59:p, comp button3:::p:97:p, space :p:28:p}, seq l {space :p:148:p, comp button6:::p:100:p, space ::650:x}}"
+			"$verticalGroup": "par l {seq {par l {seq t {space :p:63:p, comp label2:::p:30:p, space :p:44:p, comp scrollPane1::::379:x}, seq t {space ::45:x, par b {comp productNameTextField::b:p:31:p, comp label5::b:p:31:p}, space :p:28:p, par b {comp productNumberTextField::b:p:31:p, comp label6::b:p:31:p}, space s:::p, par l {comp vipCardTextField:::p:31:p, comp label8:::p:31:p}, space :p:42:p, par b {comp button1::b:p:44:p, comp button5::b:p:44:p}, space :p:36:p, par b {comp needPayTextField::b:p:31:p, comp label3::b:p:33:p}, space s:::p, par b {comp realPayTextField::b:p:31:p, comp label4::b:p:33:p}, space s:::p, par b {comp chargeTextField::b:p:31:p, comp label7::b:p:33:p}, space :p:30:p, par b {comp button2::b:p:45:p, comp button4::b:p:45:p, comp button3::b:p:45:p}}}, space :::p, comp button6:::p:42:p, space :::p}}"
 		} ) {
 			name: "this"
 			"title": "商品结算"
@@ -109,6 +109,11 @@ new FormModel {
 				name: "button4"
 				"text": "找零"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "countChargeAction", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": "生成小票"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button6ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:43:p, comp scrollPane1:::p:540:p}, seq l {space :p:228:p, comp label1:::p:135:p}}, space ::30:x}}"
+			"$verticalGroup": "par l {seq {space ::16:x, comp label1:::p:83:p, space u:::p, comp scrollPane1:::p:472:p, space :p:18:p}}"
+		} ) {
+			name: "this"
+			"font": new java.awt.Font( "Dialog", 0, 30 )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "交易清单"
+				"font": new java.awt.Font( "Dialog", 1, 30 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 85, 0 )
+			"size": new java.awt.Dimension( 615, 630 )
+		} )
+	}
+}

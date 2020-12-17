@@ -22,8 +22,9 @@ public class ReturnGoodsForm extends JFrame {
 	// 确认退货
 	private void returnGoodsAction(ActionEvent e) {
 		// TODO add your code here
-		var recordNum = Integer.valueOf(treatRecordNumTextField.getText().toString());
-		var record = SaleRecord.getRecordById(recordNum);
+		var recordNum = treatRecordNumTextField.getText().toString();
+		var id = Integer.valueOf(goodsidtextField.getText().toString());
+		var record = SaleRecord.getRecordById(recordNum,id);
 		if (record == null) {
 			JOptionPane.showMessageDialog(this, "记录不存在");
 			return ;
@@ -31,7 +32,7 @@ public class ReturnGoodsForm extends JFrame {
 
 		// 退货，删除记录
 		SaleRecordDao dao = new SaleRecordDao();
-		var ok = dao.delete(recordNum);
+		var ok = dao.delete(recordNum,id);
 		if (!ok) {
 			JOptionPane.showMessageDialog(this, "记录不存在");
 			return ;
@@ -45,6 +46,8 @@ public class ReturnGoodsForm extends JFrame {
 		treatRecordNumTextField = new JTextField();
 		label1 = new JLabel();
 		button1 = new JButton();
+		label2 = new JLabel();
+		goodsidtextField = new JTextField();
 
 		//======== this ========
 		setTitle("\u9000\u8d27");
@@ -57,6 +60,9 @@ public class ReturnGoodsForm extends JFrame {
 		button1.setText("\u786e\u8ba4\u9000\u8d27");
 		button1.addActionListener(e -> returnGoodsAction(e));
 
+		//---- label2 ----
+		label2.setText("\u5546\u54c1\u53f7");
+
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);
 		contentPaneLayout.setHorizontalGroup(
@@ -64,13 +70,17 @@ public class ReturnGoodsForm extends JFrame {
 				.addGroup(contentPaneLayout.createSequentialGroup()
 					.addGroup(contentPaneLayout.createParallelGroup()
 						.addGroup(contentPaneLayout.createSequentialGroup()
-							.addGap(61, 61, 61)
-							.addComponent(label1, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-							.addGap(64, 64, 64)
-							.addComponent(treatRecordNumTextField, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-						.addGroup(contentPaneLayout.createSequentialGroup()
 							.addGap(161, 161, 161)
-							.addComponent(button1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(button1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGap(61, 61, 61)
+							.addGroup(contentPaneLayout.createParallelGroup()
+								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label2, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
+							.addGap(64, 64, 64)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(treatRecordNumTextField, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+								.addComponent(goodsidtextField, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))))
 					.addContainerGap(168, Short.MAX_VALUE))
 		);
 		contentPaneLayout.setVerticalGroup(
@@ -80,9 +90,13 @@ public class ReturnGoodsForm extends JFrame {
 					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						.addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(treatRecordNumTextField, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addGap(145, 145, 145)
+					.addGap(18, 18, 18)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+						.addComponent(goodsidtextField, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+						.addComponent(label2, GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+					.addGap(85, 85, 85)
 					.addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(156, Short.MAX_VALUE))
+					.addContainerGap(167, Short.MAX_VALUE))
 		);
 		pack();
 		setLocationRelativeTo(getOwner());
@@ -94,5 +108,7 @@ public class ReturnGoodsForm extends JFrame {
 	private JTextField treatRecordNumTextField;
 	private JLabel label1;
 	private JButton button1;
+	private JLabel label2;
+	private JTextField goodsidtextField;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

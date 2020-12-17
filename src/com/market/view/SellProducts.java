@@ -5,6 +5,8 @@
 package com.market.view;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -33,7 +35,7 @@ public class SellProducts extends JFrame {
 		this.dispose();
 	}
 
-	// 结算
+	// 结算,这里设置record的num的改变
 	private void sellAction(ActionEvent e) {
 		var vipValid = false;
 		String vipField = vipCardTextField.getText().toString();
@@ -46,21 +48,38 @@ public class SellProducts extends JFrame {
 		}
 
 		float totalFee = 0;
+		rcs = new ArrayList<SaleRecord>();
+		//保存此次交易的record
 		for (int i = 0; i < shoppingCartTable.getRowCount(); i++) {
 			var productId = Integer.valueOf(shoppingCartTable.getValueAt(i, 0).toString());
 			var productPrice = Float.valueOf(shoppingCartTable.getValueAt(i, 2).toString());
-			var productNum = Integer.valueOf(shoppingCartTable.getValueAt(i, 3).toString());			
-
-			var product = Product.getById(productId);
+			var productNum = Integer.valueOf(shoppingCartTable.getValueAt(i, 3).toString());
+			
+			
+			//货物
+			Product product;
+			ProductDao productDao = new ProductDao();
+			product = productDao.getProductById(productId);
+			
 			if (product == null) {
 				JOptionPane.showMessageDialog(this, "失败");
 				return ;
 			}
+			
+			//成本
+			var pur =  product.getPurchasePrice();
+			
+			
 
 			float curTotal = (float) (productPrice * productNum * product.getStratey() * 0.01);
 			if (vipValid) curTotal *= 0.95;
 			totalFee += curTotal;
-
+			
+			//利润
+			float profit = (float)curTotal - productNum*pur;
+//			System.out.println(""+pur);
+//			System.out.println(""+productId);
+			
 			var saleRecord = new SaleRecord();
 			saleRecord.setProductId(productId);
 			saleRecord.setStaffId(this.userId);
@@ -68,6 +87,7 @@ public class SellProducts extends JFrame {
 			saleRecord.setMoney(curTotal);
 			saleRecord.setStratey(product.getStratey());
 			saleRecord.setCreateTime(Time.getCurrentTime());
+			saleRecord.setProfit(profit);
 
 			// 添加记录至DB
 			var saleRecordDao = new SaleRecordDao();
@@ -76,13 +96,22 @@ public class SellProducts extends JFrame {
 			if (!ok) {
 				JOptionPane.showMessageDialog(this, "失败");
 				return ;
-			}			
+			}
+			rcs.add(saleRecord);
+			belong = saleRecord.getBelong();
 		}
-
+		
+		//test
+//		for (SaleRecord r : rcs) {
+//			System.out.println(r.getBelong());
+//			System.out.println(" "+ r.getProfit());
+//		}
 		needPayTextField.setText(String.valueOf(totalFee));
+		total = totalFee;
 		// 清空购物车
 		DefaultTableModel dft = (DefaultTableModel) shoppingCartTable.getModel();
 		dft.setRowCount(0);
+		SaleRecord.setNum();
 	}
 	
 	// 判断字符串是商品名还是商品编号
@@ -164,6 +193,17 @@ public class SellProducts extends JFrame {
 		chargeTextField.setText(String.valueOf(charge));
 	}
 
+	private void button6ActionPerformed(ActionEvent e) {
+		// TODO add your code here
+		//生成小票
+		createlist();
+	}
+
+	private void createlist() {
+		// TODO Auto-generated method stub
+		new DealingFrm(rcs,belong,total).setVisible(true);
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Evaluation license - Mannix Zhang
@@ -187,6 +227,7 @@ public class SellProducts extends JFrame {
 		label8 = new JLabel();
 		vipCardTextField = new JTextField();
 		button4 = new JButton();
+		button6 = new JButton();
 
 		//======== this ========
 		setTitle("\u5546\u54c1\u7ed3\u7b97");
@@ -252,6 +293,10 @@ public class SellProducts extends JFrame {
 		button4.setText("\u627e\u96f6");
 		button4.addActionListener(e -> countChargeAction(e));
 
+		//---- button6 ----
+		button6.setText("\u751f\u6210\u5c0f\u7968");
+		button6.addActionListener(e -> button6ActionPerformed(e));
+
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);
 		contentPaneLayout.setHorizontalGroup(
@@ -305,6 +350,10 @@ public class SellProducts extends JFrame {
 					.addGap(59, 59, 59)
 					.addComponent(button3, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addGap(28, 28, 28))
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addGap(148, 148, 148)
+					.addComponent(button6, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(650, Short.MAX_VALUE))
 		);
 		contentPaneLayout.setVerticalGroup(
 			contentPaneLayout.createParallelGroup()
@@ -314,9 +363,9 @@ public class SellProducts extends JFrame {
 							.addGap(63, 63, 63)
 							.addComponent(label2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 							.addGap(44, 44, 44)
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
 						.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-							.addContainerGap(50, Short.MAX_VALUE)
+							.addContainerGap(45, Short.MAX_VALUE)
 							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(productNameTextField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label5, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
@@ -349,7 +398,9 @@ public class SellProducts extends JFrame {
 								.addComponent(button2, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addComponent(button4, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 								.addComponent(button3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))))
-					.addGap(55, 55, 55))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(button6, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		pack();
 		setLocationRelativeTo(getOwner());
@@ -378,5 +429,9 @@ public class SellProducts extends JFrame {
 	private JLabel label8;
 	private JTextField vipCardTextField;
 	private JButton button4;
+	private JButton button6;
+	private List<SaleRecord> rcs;
+	private String belong;
+	private float total;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
