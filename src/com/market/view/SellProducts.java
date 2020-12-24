@@ -14,6 +14,7 @@ import javax.swing.table.*;
 
 import com.market.dao.ProductDao;
 import com.market.dao.SaleRecordDao;
+import com.market.dao.VIPDao;
 import com.market.model.Product;
 import com.market.model.SaleRecord;
 import com.market.model.VIP;
@@ -35,7 +36,7 @@ public class SellProducts extends JFrame {
 		this.dispose();
 	}
 
-	// 结算,这里设置record的num的改变
+	// 结算,这里设置 record 的 num 的改变
 	private void sellAction(ActionEvent e) {
 		var vipValid = false;
 		String vipField = vipCardTextField.getText().toString();
@@ -49,14 +50,13 @@ public class SellProducts extends JFrame {
 
 		float totalFee = 0;
 		rcs = new ArrayList<SaleRecord>();
-		//保存此次交易的record
+		// 保存此次交易的record
 		for (int i = 0; i < shoppingCartTable.getRowCount(); i++) {
 			var productId = Integer.valueOf(shoppingCartTable.getValueAt(i, 0).toString());
 			var productPrice = Float.valueOf(shoppingCartTable.getValueAt(i, 2).toString());
 			var productNum = Integer.valueOf(shoppingCartTable.getValueAt(i, 3).toString());
-			
-			
-			//货物
+
+			// 货物
 			Product product;
 			ProductDao productDao = new ProductDao();
 			product = productDao.getProductById(productId);
@@ -65,20 +65,16 @@ public class SellProducts extends JFrame {
 				JOptionPane.showMessageDialog(this, "失败");
 				return ;
 			}
-			
-			//成本
+
+			// 成本
 			var pur =  product.getPurchasePrice();
-			
-			
 
 			float curTotal = (float) (productPrice * productNum * product.getStratey() * 0.01);
 			if (vipValid) curTotal *= 0.95;
 			totalFee += curTotal;
-			
-			//利润
+
+			// 利润
 			float profit = (float)curTotal - productNum*pur;
-//			System.out.println(""+pur);
-//			System.out.println(""+productId);
 			
 			var saleRecord = new SaleRecord();
 			saleRecord.setProductId(productId);
@@ -100,18 +96,27 @@ public class SellProducts extends JFrame {
 			rcs.add(saleRecord);
 			belong = saleRecord.getBelong();
 		}
-		
-		//test
-//		for (SaleRecord r : rcs) {
-//			System.out.println(r.getBelong());
-//			System.out.println(" "+ r.getProfit());
-//		}
+
 		needPayTextField.setText(String.valueOf(totalFee));
 		total = totalFee;
+
 		// 清空购物车
 		DefaultTableModel dft = (DefaultTableModel) shoppingCartTable.getModel();
 		dft.setRowCount(0);
 		SaleRecord.setNum();
+		
+		// 更新会员的消费金额
+		if (vipValid) {
+			var vipDao = new VIPDao();
+			var vip = vipDao.getVIPById(Integer.valueOf(vipField));
+			vip.setMoney(vip.getConsumeMoney() + totalFee);
+			var ok = vipDao.updateConsumeMoney(vip);
+			vipDao.closeDao();
+			if (!ok) {
+				System.out.println("更新会员消费金额失败");
+				return ;
+			}
+		}
 	}
 	
 	// 判断字符串是商品名还是商品编号

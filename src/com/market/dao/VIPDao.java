@@ -95,6 +95,22 @@ public class VIPDao extends BaseDao {
         }
         return false;
 	}
+	
+	// 更新消费金额
+	public boolean updateConsumeMoney(VIP vip) {
+		String sqlString = "update VIP set VIP_money = ? where VIP_id = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlString);
+            ps.setFloat(1, vip.getConsumeMoney());
+            ps.setInt(2,  vip.getId());
+            if(ps.executeUpdate() > 0) return true;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+	}
 
 	// 注销会员卡，软删除，将 is_use 设为 0
 	public boolean delete(int id) {
